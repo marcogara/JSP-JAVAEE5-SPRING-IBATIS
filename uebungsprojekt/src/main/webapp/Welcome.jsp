@@ -10,7 +10,7 @@
 
                 </ui:head>
 
-				        <ui:body id="body1">
+				        <ui:body id="body1" style="background-color: black;">
 
 							<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 
