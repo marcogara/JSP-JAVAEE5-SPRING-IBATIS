@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<import resource="classpath*:ibatisDAO.xml" />
+	<import resource="classpath:transactions.xml" />
+
+	<bean
+			id="dataSource"
+			destroy-method="close"
+			class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver"/>
+		<property name="url" value="jdbc:postgresql://localhost:5432/buecherverleih"/>
+		<property name="username" value="admin"/>
+		<property name="password" value="admin"/>
+		<property name="logAbandoned" value="true"/>
+		<property name="removeAbandoned" value="true"/>
+		<property name="validationQuery" value="SELECT current_date"/>
+	</bean>
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:sqlmap-config.xml"/>
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Throwable"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config proxy-target-class="true">
+		<!--
+			Alle public-Methoden im Package com.asci.transaction sollten transaktionsgesteuert sein.
+			Die zwei Punkte zwischen transaction und Transaction bedeuten, dass die Regel auf alle
+			das Package transaction und alle Unterpackages angewandt wird.
+		-->
+		<aop:pointcut id="transactionPointcut" expression="execution(public * com.garagna.uebungsprojekt.transaction..Transaction*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut"/>
+	</aop:config>
+</beans>
