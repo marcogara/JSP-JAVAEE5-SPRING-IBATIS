@@ -16,7 +16,7 @@ public class Welcome extends AbstractPageBean
 	public String buttonRegistrieren_action()
 	{
 
-		return ""; // navigation.xml von syAbo anpassen
+		return "";	 // navigation.xml von syAbo anpassen
 	}
 
 	public String buttonBuecherliste_action()

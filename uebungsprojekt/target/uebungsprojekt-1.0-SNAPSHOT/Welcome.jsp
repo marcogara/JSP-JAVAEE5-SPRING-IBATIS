@@ -14,11 +14,12 @@
 
 							<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 
-							<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="height: 36px;">
+							<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center;">
 
-												<ui:button action="#{Welcome.buttonRegistrieren_action}" id="buttonRegistrieren" text="Registrieren"/>
-												<ui:button action="#{Welcome.buttonBuecherliste_action}" id="buttonBuecherliste" text="Bücherliste ansehen"/>
-												<ui:button action="#{Welcome.buttonAusleihen_action}" id="buttonAusleihen" text="Buch ausleihen"/>
+												<ui:button action="#{Welcome.buttonRegistrieren_action}" id="buttonRegistrieren" text="Registrieren" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+												<ui:button action="#{Welcome.buttonBuecherliste_action}" id="buttonBuecherliste" text="Bücherliste ansehen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+												<ui:button action="#{Welcome.buttonAusleihen_action}" id="buttonAusleihen" text="Buch ausleihen" style="font-size: 18px; padding: 10px 20px 30px 30px;"/>
+
 							</ui:panelLayout>
 
 						</ui:body>
