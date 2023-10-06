@@ -2,18 +2,87 @@ package com.garagna.uebungsprojekt.web;
 
 import com.garagna.uebungsprojekt.types.Kunde;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
+import com.sun.rave.web.ui.component.TextField;
 
 public class Registrieren extends AbstractPageBean
 {
+	private TextField textFieldBenutzernvoraname = new TextField();
 
-	public String buttonRegister_action()
+	private TextField textFieldBenutzernnachname = new TextField();
+
+	private TextField textFieldGuthaben = new TextField();
+
+	private String testMessage = "test";           // Für Meldungen und oder testing
+
+	public String getTestMessage()
+	{
+		return testMessage;
+	}
+
+	public void setTestMessage(String testMessage)
+	{
+		this.testMessage = testMessage;
+	}
+
+	public TextField getTextFieldBenutzernvoraname()
+	{
+		return textFieldBenutzernvoraname;
+	}
+
+	public void setTextFieldBenutzernvoraname(TextField tf)
+	{
+		this.textFieldBenutzernvoraname = tf;
+	}
+
+	public TextField getTextFieldBenutzernnachname()
+	{
+		return textFieldBenutzernnachname;
+	}
+
+	public void setTextFieldBenutzernnachname(TextField tf)
+	{
+		this.textFieldBenutzernnachname = tf;
+	}
+
+	public TextField getTextFieldGuthaben()
+	{
+		return textFieldGuthaben;
+	}
+
+	public void setTextFieldGuthaben(TextField tf)
+	{
+		this.textFieldGuthaben = tf;
+	}
+
+	public String buttonBestaetigung_action()
 	{
 		// Create a new Kunde instance and populate its properties
 		Kunde kunde = new Kunde();
 		//  kunde.setNummer(nummer); es sool den id nummer von den datenbank zurückgeben......
-		kunde.setVorname("Bob");		 // soll von ein inputTextFeld kommen
-		kunde.setName("Erste");			 // soll von ein inputTextFeld kommen
-		kunde.setGuthaben(20);	     // soll von ein inputTextFeld kommen
+
+		if (!this.textFieldBenutzernvoraname.getValue().toString().isEmpty() && this.textFieldBenutzernvoraname != null)
+		{
+			kunde.setVorname(this.textFieldBenutzernvoraname.getValue().toString());		 // soll von ein inputTextFeld kommen
+		}
+		else
+		{
+			this.testMessage = "Hier muss ein Name eingegeben werden";
+		}
+
+		kunde.setName(this.textFieldBenutzernnachname.getValue().toString());	 // ???????? zu Überrprufen, ich glaube ist nicht so gemacht in syAbo sondern mit Proprieties ??
+
+		// Parse the Guthaben value from the TextField to a double
+		try
+		{
+			String guthabenStr = textFieldGuthaben.getValue().toString();
+			double guthaben = Double.parseDouble(guthabenStr);
+			kunde.setGuthaben(guthaben);
+		}
+		catch (NumberFormatException e)
+		{
+			// Handle the case where the input is not a valid double (e.g., show an error message)
+			// You can also set a default value or take appropriate action.
+		}
 
 		// Implement any validation logic here
 		// SQL mit Kundendaten abfragen und ID abrufen
