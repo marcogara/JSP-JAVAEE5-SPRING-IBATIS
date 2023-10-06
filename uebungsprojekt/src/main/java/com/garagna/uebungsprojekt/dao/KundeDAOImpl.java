@@ -10,8 +10,10 @@ public class KundeDAOImpl
 	@Override
 	public void insert(Kunde kunde)
 	{
-		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 
+		getSqlMapClientTemplate().insert("kunde.insert", kunde);
+
+		// throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
 
 }

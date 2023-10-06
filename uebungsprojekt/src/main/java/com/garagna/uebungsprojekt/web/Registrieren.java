@@ -76,10 +76,6 @@ public class Registrieren extends AbstractPageBean
 
 		// Implement any validation logic here
 		// SQL mit Kundendaten abfragen und ID abrufen
-		// If validation passes, add the Kunde to the list of registered customers when we have the we can have an HashMap!
-		// um diese Funktionalität weitere zu Erstellen
-		Kunde.addRegisteredCustomers(kunde);
-
 		// Redirect to a success page or perform other actions as needed
 		// refresh page and display kundendaten registration with kundennummer and confirmation. after that kunde can go to Ausleihen page for instance....
 		this.testMessage = "registration_success";
