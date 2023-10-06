@@ -8,6 +8,16 @@
 		<managed-bean-class>com.garagna.uebungsprojekt.web.Welcome</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>Registrieren</managed-bean-name>
+		<managed-bean-class>com.garagna.uebungsprojekt.web.Registrieren</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>Buecherliste</managed-bean-name>
+		<managed-bean-class>com.garagna.uebungsprojekt.web.Buecherliste</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>
 

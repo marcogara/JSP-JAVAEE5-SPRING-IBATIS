@@ -1,5 +1,8 @@
 package com.garagna.uebungsprojekt.types;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kunde
 {
 	private int nummer;
@@ -9,6 +12,18 @@ public class Kunde
 	private String name;
 
 	private double guthaben;
+
+	private static List<Kunde> registeredCustomers = new ArrayList<>();
+
+	public static List<Kunde> getRegisteredCustomers()
+	{
+		return registeredCustomers;
+	}
+
+	public static void addRegisteredCustomers(Kunde kunde)
+	{
+		registeredCustomers.add(kunde);
+	}
 
 	public int getNummer()
 	{

@@ -4,18 +4,35 @@
 
 <faces-config>
 
-		<!--               Anpassen for Welcome.jsp to ??
-
-
 		<navigation-rule>
-				<from-view-id>/Ping.jsp</from-view-id>
+				<from-view-id>/Welcome.jsp</from-view-id>
 			<navigation-case>
-				<from-outcome>go_nachrichten</from-outcome>
-				<to-view-id>/Nachrichten.jsp</to-view-id>
+				<from-outcome>go_registrieren</from-outcome>
+				<to-view-id>/Registrieren.jsp</to-view-id>
+			</navigation-case>
+		</navigation-rule>
+		<navigation-rule>
+				<from-view-id>/Registrieren.jsp</from-view-id>
+			<navigation-case>
+				<from-outcome>go_welcome</from-outcome>
+				<to-view-id>/Welcome.jsp</to-view-id>
+			</navigation-case>
+		</navigation-rule>
+		<navigation-rule>
+				<from-view-id>/Welcome.jsp</from-view-id>
+			<navigation-case>
+				<from-outcome>go_buecherliste</from-outcome>
+				<to-view-id>/Buecherliste.jsp</to-view-id>
+			</navigation-case>
+		</navigation-rule>
+		<navigation-rule>
+				<from-view-id>/Buecherliste.jsp</from-view-id>
+			<navigation-case>
+				<from-outcome>go_welcome</from-outcome>
+				<to-view-id>/Welcome.jsp</to-view-id>
 			</navigation-case>
 		</navigation-rule>
 
-			-->
 
-			
+
 </faces-config>
