@@ -54,21 +54,12 @@ public class Registrieren extends AbstractPageBean
 		this.textFieldGuthaben = tf;
 	}
 
-	public String buttonBestaetigung_action()
+	public void buttonBestaetigung_action()
 	{
-		// Create a new Kunde instance and populate its properties
 		Kunde kunde = new Kunde();
-		//  kunde.setNummer(nummer); es sool den id nummer von den datenbank zurückgeben......
+		//	 kunde.setNummer(nummer); es soll den id nummer von den datenbank abgefragt werden
 
-		if (!this.textFieldBenutzernvoraname.getValue().toString().isEmpty() && this.textFieldBenutzernvoraname != null)
-		{
-			kunde.setVorname(this.textFieldBenutzernvoraname.getValue().toString());		 // soll von ein inputTextFeld kommen
-		}
-		else
-		{
-			this.testMessage = "Hier muss ein Name eingegeben werden";
-		}
-
+		kunde.setVorname(this.textFieldBenutzernvoraname.getValue().toString());		 // soll von ein inputTextFeld kommen
 		kunde.setName(this.textFieldBenutzernnachname.getValue().toString());	 // ???????? zu Überrprufen, ich glaube ist nicht so gemacht in syAbo sondern mit Proprieties ??
 
 		// Parse the Guthaben value from the TextField to a double
@@ -80,8 +71,7 @@ public class Registrieren extends AbstractPageBean
 		}
 		catch (NumberFormatException e)
 		{
-			// Handle the case where the input is not a valid double (e.g., show an error message)
-			// You can also set a default value or take appropriate action.
+			e.printStackTrace();
 		}
 
 		// Implement any validation logic here
@@ -92,7 +82,7 @@ public class Registrieren extends AbstractPageBean
 
 		// Redirect to a success page or perform other actions as needed
 		// refresh page and display kundendaten registration with kundennummer and confirmation. after that kunde can go to Ausleihen page for instance....
-		return "registration_success";
+		this.testMessage = "registration_success";
 	}
 
 	@Override
