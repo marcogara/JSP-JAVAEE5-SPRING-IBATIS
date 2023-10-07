@@ -11,7 +11,7 @@ public class Kunde
 
 	private String name;
 
-	private double guthaben;
+	private int guthaben;
 
 	private static List<Kunde> registeredCustomers = new ArrayList<>();
 
@@ -55,7 +55,7 @@ public class Kunde
 		return guthaben;
 	}
 
-	public void setGuthaben(double guthaben)
+	public void setGuthaben(int guthaben)
 	{
 		this.guthaben = guthaben;
 	}

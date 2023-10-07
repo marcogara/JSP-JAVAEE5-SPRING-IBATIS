@@ -66,7 +66,7 @@ public class Registrieren extends AbstractPageBean
 		try
 		{
 			String guthabenStr = textFieldGuthaben.getValue().toString();
-			double guthaben = Double.parseDouble(guthabenStr);
+			int guthaben = Integer.parseInt(guthabenStr);
 			kunde.setGuthaben(guthaben);
 		}
 		catch (NumberFormatException e)
