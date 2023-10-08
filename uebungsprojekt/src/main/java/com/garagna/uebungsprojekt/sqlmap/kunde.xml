@@ -2,24 +2,20 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="kunde">
 
-
 	<insert id="insert" parameterClass="Kunde" >
 		INSERT INTO kunde
 		(
-			nummer,
 			name,
 			vorname,
 			guthaben
 		)
 		VALUES
 		(
-			#verteilung.id:INTEGER#,
 			#name:VARCHAR#,
 			#vorname:VARCHAR#,
 			#guthaben:INTEGER#
 		)
-		RETURNING id
+		RETURNING nummer
 	</insert>
-
 
 </sqlMap>
