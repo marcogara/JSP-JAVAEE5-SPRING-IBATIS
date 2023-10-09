@@ -17,13 +17,6 @@
 			<value>#{transactionRegistrieren}</value>
 		</managed-property>
 	</managed-bean>
-
-	<managed-bean>
-		<managed-bean-name>transactionRegistrieren</managed-bean-name>
-		<managed-bean-class>com.garagna.uebungsprojekt.transaction.TransactionRegistrieren</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
-
 	<managed-bean>
 		<managed-bean-name>Buecherliste</managed-bean-name>
 		<managed-bean-class>com.garagna.uebungsprojekt.web.Buecherliste</managed-bean-class>

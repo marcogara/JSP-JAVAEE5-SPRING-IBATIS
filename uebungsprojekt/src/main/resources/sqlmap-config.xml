@@ -8,7 +8,9 @@
 	<settings useStatementNamespaces="true"/>
 
 	<typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>
+	<typeAlias alias="Kunde" type="com.garagna.uebungsprojekt.types.Kunde"/>
 
 	<sqlMap resource="com/garagna/uebungsprojekt/sqlmap/buch.xml"/>
+	<sqlMap resource="com/garagna/uebungsprojekt/sqlmap/kunde.xml"/>
 
 </sqlMapConfig>

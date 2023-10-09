@@ -7,11 +7,6 @@ public class TransactionRegistrieren
 {
 	private KundeDAO kundeDAO;
 
-	public KundeDAO getKundeDAO()
-	{
-		return kundeDAO;
-	}
-
 	public void setKundeDAO(KundeDAO kundeDAO)
 	{
 		this.kundeDAO = kundeDAO;
