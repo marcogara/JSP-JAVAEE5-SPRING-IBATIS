@@ -34,6 +34,9 @@
 							<ui:button action="#{Registrieren.buttonHome_action()}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
 							<ui:button action="#{Registrieren.buttonBestaetigung_action()}" id="buttonBestaetigung" text="Bestätigen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
 							<ui:button action="#{Registrieren.buttonKundenLoeschen_action()}" id="buttonKundenloeschen" text="Löschen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
+
+								<ui:label for="textFieldKN" id="labelKN" text="kundennummer" requiredIndicator="true" style="font-size: 18px; margin-top:25px;"/>
+								<ui:textField binding="#{Registrieren.textFieldKN}" converter="javax.faces.Integer" id="textFieldKN" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 						</ui:panelLayout>
 
 							<h:outputText value="#{Registrieren.errorMessage}" />

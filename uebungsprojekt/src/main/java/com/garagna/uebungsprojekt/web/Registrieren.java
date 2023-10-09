@@ -62,6 +62,18 @@ public class Registrieren extends AbstractPageBean
 		this.transactionRegistrieren = transactionRegistrieren;
 	}
 
+	private TextField textFieldKN = new TextField();
+
+	public TextField getTextFieldKN()
+	{
+		return textFieldKN;
+	}
+
+	public void setTextFieldKN(TextField textFieldKN)
+	{
+		this.textFieldKN = textFieldKN;
+	}
+
 	@Override
 	public void prerender()
 	{
@@ -94,6 +106,10 @@ public class Registrieren extends AbstractPageBean
 
 	public void buttonKundenLoeschen_action() // ist String als Rückgabewert korrekt?
 	{
+		Integer kundennummer = (Integer) this.textFieldKN.getText();
+
+		// transaction Aufruf
+		this.transactionRegistrieren.loeschen(kundennummer);
 
 		this.errorMessage = "kunde gelöscht";   // ??
 

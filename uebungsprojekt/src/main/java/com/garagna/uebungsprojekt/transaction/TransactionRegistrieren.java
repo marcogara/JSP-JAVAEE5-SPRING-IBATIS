@@ -19,4 +19,19 @@ public class TransactionRegistrieren
 			this.kundeDAO.insert(kunde);
 		}
 	}
+
+	public boolean loeschen(Integer id)
+	{
+		boolean ok = true;
+		try
+		{
+			this.kundeDAO.delete(id);
+		}
+		catch (Exception e)
+		{
+			ok = false;
+		}
+		return ok;
+	}
+
 }
