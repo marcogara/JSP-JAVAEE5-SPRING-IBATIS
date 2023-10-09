@@ -92,6 +92,13 @@ public class Registrieren extends AbstractPageBean
 
 	}
 
+	public void buttonKundenLoeschen_action() // ist String als Rückgabewert korrekt?
+	{
+
+		this.errorMessage = "kunde gelöscht";   // ??
+
+	}
+
 	public String buttonHome_action()
 	{
 		// Registrieren reg = (Registrieren) getBean("Registrieren");
@@ -99,4 +106,31 @@ public class Registrieren extends AbstractPageBean
 	}
 
 	// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
+	/**
+	 * step to add a new entity in the app to do all the other operation (to save in the database)
+	 *
+	 * Transaction class
+	 *
+	 * transaction.xml needs to have the correct bean (Trasnsaction class)
+	 *
+	 * DAO interface
+	 *
+	 * DAOImpl class
+	 *
+	 * add bean in ibatisdao.xml
+	 *
+	 * faces-config file has to be present
+	 *
+	 * sqlmap-config.xml
+	 *
+	 * needs to have the entity as exemple below show
+	 *
+	 * <typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>
+	 * <typeAlias alias="Kunde" type="com.garagna.uebungsprojekt.types.Kunde"/>
+	 *
+	 * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/buch.xml"/>
+	 * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/kunde.xml"/>
+	 *
+	 *
+	 */
 }

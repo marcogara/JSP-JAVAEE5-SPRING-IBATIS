@@ -6,4 +6,6 @@ public interface KundeDAO
 {
 	void insert(Kunde kunde);
 
+	int delete(Integer nummer);
+
 }

@@ -20,4 +20,10 @@
 		</selectKey>
 	</insert>
 
+
+	<delete id="delete" parameterClass="int" >
+		DELETE FROM kunde
+		WHERE nummer = #value#
+	</delete>
+
 </sqlMap>

@@ -1,8 +1,6 @@
 package com.garagna.uebungsprojekt.web;
 
-import javax.faces.FacesException;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
-import com.sun.rave.web.ui.component.TextField;
 
 public class Welcome extends AbstractPageBean      // https://docs.oracle.com/cd/E17824_01/dsc_docs/docs/jscreator/apis/jsfcl/com/sun/jsfcl/app/AbstractPageBean.html
 {
