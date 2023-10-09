@@ -32,7 +32,6 @@
 				<to-view-id>/Welcome.jsp</to-view-id>
 			</navigation-case>
 		</navigation-rule>
-
-
+		
 
 </faces-config>

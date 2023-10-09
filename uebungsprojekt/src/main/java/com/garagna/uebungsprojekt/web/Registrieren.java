@@ -1,5 +1,6 @@
 package com.garagna.uebungsprojekt.web;
 
+import com.garagna.uebungsprojekt.transaction.TransactionRegistrieren;
 import com.garagna.uebungsprojekt.types.Kunde;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import com.sun.rave.web.ui.component.TextField;
@@ -51,7 +52,14 @@ public class Registrieren extends AbstractPageBean
 
 	public void setErrorMessage(String errorMessage)
 	{
-		this.errorMessage = errorMessage;  // logger für Meldungen
+		this.errorMessage = errorMessage;  //  Meldungen für User
+	}
+
+	private TransactionRegistrieren transactionRegistrieren;
+
+	public void setTransactionRegistrieren(TransactionRegistrieren transactionRegistrieren)
+	{
+		this.transactionRegistrieren = transactionRegistrieren;
 	}
 
 	@Override
@@ -62,25 +70,20 @@ public class Registrieren extends AbstractPageBean
 
 	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?
 	{
+
+		String vorname = (String) this.textFieldBenutzernvoraname.getText();  // alles muss so gemacht werden
+		String name = (String) this.textFieldBenutzernnachname.getText();
+		Integer guthaben = (Integer) this.textFieldGuthaben.getText();
+
 		Kunde kunde = new Kunde();
-		//	 kunde.setNummer(nummer); es soll den id nummer von den datenbank abgefragt werden
 
-		kunde.setVorname(this.textFieldBenutzernvoraname.getValue().toString());		 // soll von ein inputTextFeld kommen
-		kunde.setName(this.textFieldBenutzernnachname.getValue().toString());	 // ???????? zu Überrprufen, ich glaube ist nicht so gemacht in syAbo sondern mit Proprieties ??
-
-		// Parse the Guthaben value from the TextField to an Integer
-		try
-		{
-			String guthabenStr = textFieldGuthaben.getValue().toString();
-			int guthaben = Integer.parseInt(guthabenStr);                 // mit converter in JSP arbeiten javax faces
-			kunde.setGuthaben(guthaben);
-		}
-		catch (NumberFormatException e)
-		{
-			e.printStackTrace();
-		}
+		kunde.setVorname(vorname);
+		kunde.setName(name);
+		kunde.setGuthaben(guthaben);
 
 		// transaction Aufruf
+		this.transactionRegistrieren.speichern(kunde);
+
 		// Implement any validation logic here
 		// SQL mit Kundendaten abfragen und ID abrufen
 		// Redirect to a success page or perform other actions as needed
