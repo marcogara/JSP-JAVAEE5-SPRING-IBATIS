@@ -3,19 +3,21 @@
 <sqlMap namespace="kunde">
 
 	<insert id="insert" parameterClass="Kunde" >
-		INSERT INTO kunde
-		(
-			name,
-			vorname,
-			guthaben
-		)
-		VALUES
-		(
-			#name:VARCHAR#,
-			#vorname:VARCHAR#,
-			#guthaben:INTEGER#
-		)
-		RETURNING nummer
+		<selectKey keyProperty="nummer" resultClass="int" type="pre">
+			INSERT INTO kunde
+			(
+				name,
+				vorname,
+				guthaben
+			)
+			VALUES
+			(
+				#name:VARCHAR#,
+				#vorname:VARCHAR#,
+				#guthaben:INTEGER#
+			)
+			RETURNING nummer
+		</selectKey>
 	</insert>
 
 </sqlMap>

@@ -1,43 +1,33 @@
 package com.garagna.uebungsprojekt.types;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Kunde
 {
-	private int nummer;
+	private Integer nummer;
 
-	private String Vorname;
+	private String vorname;
 
 	private String name;
 
 	private int guthaben;
 
-	private static List<Kunde> registeredCustomers = new ArrayList<>();
-
-	public static List<Kunde> getRegisteredCustomers()
-	{
-		return registeredCustomers;
-	}
-
-	public static void addRegisteredCustomers(Kunde kunde)
-	{
-		registeredCustomers.add(kunde);
-	}
-
-	public int getNummer()
+	public Integer getNummer()   // immer  mit ID Integer benutzen Andere Klassen überprüfen
 	{
 		return nummer;
 	}
 
-	public String getVorname()
+	public void setNummer(Integer nummer)
 	{
-		return Vorname;
+		this.nummer = nummer;
 	}
 
-	public void setVorname(String Vorname)
+	public String getVorname()
 	{
-		this.Vorname = Vorname;
+		return vorname;
+	}
+
+	public void setVorname(String vorname)
+	{
+		this.vorname = vorname;
 	}
 
 	public String getName()
@@ -59,5 +49,4 @@ public class Kunde
 	{
 		this.guthaben = guthaben;
 	}
-
 }

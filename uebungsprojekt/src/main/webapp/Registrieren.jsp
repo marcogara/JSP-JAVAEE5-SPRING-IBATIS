@@ -23,7 +23,7 @@
 									<ui:textField binding="#{Registrieren.textFieldBenutzernnachname}" id="textFieldBenutzernnachname" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 
 									<ui:label for="textFieldGuthaben" id="labelGuthaben" text="Guthaben" requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
-									<ui:textField binding="#{Registrieren.textFieldGuthaben}" id="textFieldGuthaben" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+									<ui:textField binding="#{Registrieren.textFieldGuthaben}" converter="javax.faces.Integer" id="textFieldGuthaben" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 
 								</h:panelGrid>
 
@@ -36,7 +36,7 @@
 
 						</ui:panelLayout>
 
-							<h:outputText value="#{Registrieren.testMessage}" />
+							<h:outputText value="#{Registrieren.errorMessage}" />
 
 					</ui:form>
 				</ui:body>
