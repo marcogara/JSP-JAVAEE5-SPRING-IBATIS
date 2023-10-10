@@ -4,4 +4,7 @@
 	<bean id="transactionRegistrieren" class="com.garagna.uebungsprojekt.transaction.TransactionRegistrieren">
 		<property name="kundeDAO" ref="kundeDAO"/>
 	</bean>
+	<bean id="transactionBuecherliste" class="com.garagna.uebungsprojekt.transaction.TransactionBuecherliste">
+		<property name="buchDAO" ref="buchDAO"/>
+	</bean>
 </beans>

@@ -20,7 +20,7 @@
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelLogin">
 
 
-								<ui:listbox converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 500px; font-family: monospace;"/>
+								<ui:listbox binding="#{Buecherliste.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 500px; font-family: monospace;"/>
 
 
 							</h:panelGrid>
