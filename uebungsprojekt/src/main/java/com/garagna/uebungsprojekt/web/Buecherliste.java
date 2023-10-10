@@ -1,19 +1,21 @@
 package com.garagna.uebungsprojekt.web;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.garagna.uebungsprojekt.transaction.TransactionBuecherliste;
 import com.garagna.uebungsprojekt.types.Buch;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import com.sun.rave.web.ui.component.Listbox;
+import com.sun.rave.web.ui.model.Option;
 
 public class Buecherliste extends AbstractPageBean
 {
 	private TransactionBuecherliste transactionBuecherliste;
 
-	public void setTransactionBuch(TransactionBuecherliste tb)
+	public void setTransactionBuecherliste(TransactionBuecherliste transactionBuecherliste)
 	{
-		this.transactionBuecherliste = tb;
+		this.transactionBuecherliste = transactionBuecherliste;
 	}
 
 	private Listbox listboxBuecher = new Listbox();
@@ -31,6 +33,9 @@ public class Buecherliste extends AbstractPageBean
 	@Override
 	public void prerender()
 	{
+		// prerender sorgt dafür, dass die Daten am Anfang der Seite angezeigt werden.
+
+		buttonListe_action();
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
 	}
 
@@ -43,14 +48,14 @@ public class Buecherliste extends AbstractPageBean
 	public void buttonListe_action()
 	{
 		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
-		// List<Option> items = new LinkedList<Option>(); from beispiel anrede class nothing to do here only as sample
+		List<Option> items = new LinkedList<Option>();
 
-		// for (Anrede anrede : list)
-		// {
-		// String anzeige = anrede.getSprache().getIso() + sp + anrede.getBrief();
-		// items.add(new Option(anrede.getId(), anzeige));
-		// }
-		this.listboxBuecher.setItems(list);
+		for (Buch buch : list)
+		{
+			String anzeige = buch.toString();
+			items.add(new Option(buch.getId(), anzeige));
+		}
+		this.listboxBuecher.setItems(items);
 	}
 
 }
@@ -148,4 +153,14 @@ public class Buecherliste extends AbstractPageBean
  *
  *
  * make sure your class in this case buch has all variable accessible with the same name as the result map
+ *
+ * look: buch.xml
+ *
+ *
+ *
+ * beispiel für liste zum ui übertragen
+ *
+ * List<Buch> list = this.transactionBuecherliste.buecherlisteLaden(); List<Option> items = new LinkedList<Option>();
+ *
+ * for (Buch buch : list) { String anzeige = buch.toString(); items.add(new Option(buch.getId(), anzeige)); } this.listboxBuecher.setItems(items);
  */

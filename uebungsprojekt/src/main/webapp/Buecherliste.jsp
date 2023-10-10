@@ -20,7 +20,7 @@
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelLogin">
 
 
-								<ui:listbox binding="#{Buecherliste.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 500px; font-family: monospace;"/>
+								<ui:listbox binding="#{Buecherliste.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 1000px; font-family: monospace;"/>
 
 
 							</h:panelGrid>
@@ -31,7 +31,6 @@
 						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center;">
 
 							<ui:button action="#{Buecherliste.buttonHome_action}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-							<ui:button action="#{Buecherliste.buttonListe_action}" id="buttonListe" text="Büecherliste" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 
 						</ui:panelLayout>
 

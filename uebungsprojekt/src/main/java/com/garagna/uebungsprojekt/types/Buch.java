@@ -12,7 +12,7 @@ public class Buch
 
 	private String erscheinungsjahr;
 
-	private int verlag_id;   // to change later with FK from Verlag class
+	private int verlag_id;								  // to change later with FK from Verlag class
 
 	private String isbn;
 
@@ -84,6 +84,12 @@ public class Buch
 	public void setIsbn(String isbn)
 	{
 		this.isbn = isbn;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Title: " + this.titel + ", Author: " + this.autor + ", Genre: " + this.genre + ", Erscheinungsjahr: " + this.erscheinungsjahr + ", Isbn: " + this.isbn;
 	}
 
 }

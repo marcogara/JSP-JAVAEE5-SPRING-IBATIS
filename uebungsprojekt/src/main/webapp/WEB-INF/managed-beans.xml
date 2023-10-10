@@ -17,7 +17,6 @@
 			<value>#{transactionRegistrieren}</value>
 		</managed-property>
 	</managed-bean>
-
 	<managed-bean>
 		<managed-bean-name>Buecherliste</managed-bean-name>
 		<managed-bean-class>com.garagna.uebungsprojekt.web.Buecherliste</managed-bean-class>
@@ -27,6 +26,7 @@
 			<value>#{transactionBuecherliste}</value>
 		</managed-property>
 	</managed-bean>
+
 
 </faces-config>
 

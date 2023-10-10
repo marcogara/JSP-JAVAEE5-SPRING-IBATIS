@@ -3,19 +3,29 @@
 <sqlMap namespace="buch">
 
 	<resultMap class="Buch" id="result">
-		<result column="id" property="id" jdbcType="INTEGER" />
-		<result column="titel" property="bezeichnung" jdbcType="VARCHAR" />
-		<result column="autor" property="betrefftextid" jdbcType="VARCHAR" />
-		<result column="genre" property="haupttextid" jdbcType="VARCHAR" />
-		<result column="erscheinungsjahr" property="art" jdbcType="INTEGER" />
-		<result column="verlag_id" property="id" jdbcType="INTEGER" />
-		<result column="isbn" property="reserviert" jdbcType="VARCHAR" />
+		<result column="buch_id" property="id" jdbcType="INTEGER" />
+		<result column="buch_titel" property="titel" jdbcType="VARCHAR" />
+		<result column="buch_autor" property="autor" jdbcType="VARCHAR" />
+		<result column="buch_genre" property="genre" jdbcType="VARCHAR" />
+		<result column="buch_erscheinungsjahr" property="erscheinungsjahr" jdbcType="INTEGER" />
+		<result column="buch_verlag_id" property="verlag_id" jdbcType="INTEGER" />
+		<result column="buch_isbn" property="isbn" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<select id="selectAll" parameterClass="map" resultMap="result" >
+	<sql id="selectFragment" >
+		buch.id AS buch_id,
+		buch.titel AS buch_titel,
+		buch.autor AS buch_autor,
+		buch.genre AS buch_genre,
+		buch.erscheinungsjahr AS buch_erscheinungsjahr,
+		buch.verlag_id AS buch_verlag_id,
+		buch.isbn AS buch_isbn
+	</sql>
+
+	<select id="selectAll" resultMap="result" >
 		SELECT
 		<include refid="selectFragment"/>
-		FROM buch AS buecherliste
+		FROM buch
 	</select>
 
 </sqlMap>
