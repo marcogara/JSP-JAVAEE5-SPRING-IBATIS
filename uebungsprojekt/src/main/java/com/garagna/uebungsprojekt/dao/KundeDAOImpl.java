@@ -11,16 +11,19 @@ public class KundeDAOImpl
 	public void insert(Kunde kunde)
 	{
 		getSqlMapClientTemplate().insert("kunde.insert", kunde);
-
-		// throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
 
 	@Override
 	public int delete(Integer nummer)
 	{
 		int rows = getSqlMapClientTemplate().delete("kunde.delete", nummer);
-
-		// throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 		return rows;
 	}
+
+	/**
+	 * @Override public Kunde select(Integer intgr) {
+	 *
+	 * }
+	 *
+	 */
 }

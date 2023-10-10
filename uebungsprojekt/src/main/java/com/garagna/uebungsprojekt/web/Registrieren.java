@@ -108,9 +108,20 @@ public class Registrieren extends AbstractPageBean
 	{
 		Integer kundennummer = (Integer) this.textFieldKN.getText();
 
+		// if kundendaten stimmen und kundennumemr existiert dann kann gelöscht werden ?? sinnvoll ?
 		// transaction Aufruf
 		this.transactionRegistrieren.loeschen(kundennummer);
 
+		this.errorMessage = "kunde gelöscht";   // ??
+
+	}
+
+	public void buttonKundeSelect_action() // ist String als Rückgabewert korrekt?           // not complete
+	{
+		Integer kundennummer = (Integer) this.textFieldKN.getText();
+
+		// transaction Aufruf
+		// this.transactionRegistrieren.loeschen(kundennummer);
 		this.errorMessage = "kunde gelöscht";   // ??
 
 	}

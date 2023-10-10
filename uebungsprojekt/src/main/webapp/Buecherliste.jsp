@@ -4,26 +4,39 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"/>
 
     <f:view>
-		 <ui:page id="page1">
+		<ui:page id="page1">
             <ui:html id="html1">
                 <ui:head id="head1" title="Buecherliste">
 
                 </ui:head>
 
-				    <ui:body id="body1" style="background-color: grey;">
-						<ui:form id="form1">
+				<ui:body id="body1" style="background-color: grey;">
+					<ui:form id="form1">
 
-							<ui:label for="textFieldBrief" id="labelBrief" text=""/>
+						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 
-							<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center;">
+						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
 
-								<ui:button action="#{Buecherliste.buttonHome_action()}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelLogin">
 
-							</ui:panelLayout>
 
-						</ui:form>
+								<ui:listbox converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 500px; font-family: monospace;"/>
 
-					</ui:body>
+
+							</h:panelGrid>
+
+						</ui:panelLayout>
+
+
+						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center;">
+
+							<ui:button action="#{Buecherliste.buttonHome_action}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+
+						</ui:panelLayout>
+
+					</ui:form>
+
+				</ui:body>
 
 			</ui:html>
 		</ui:page>

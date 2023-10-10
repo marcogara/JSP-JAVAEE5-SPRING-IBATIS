@@ -8,4 +8,5 @@ public interface KundeDAO
 
 	int delete(Integer nummer);
 
+	// Kunde select(Integer nummer);
 }
