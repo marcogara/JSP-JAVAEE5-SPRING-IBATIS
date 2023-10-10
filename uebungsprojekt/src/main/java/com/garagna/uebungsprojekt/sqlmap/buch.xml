@@ -2,7 +2,21 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="buch">
 
+	<resultMap class="Buch" id="result">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="titel" property="bezeichnung" jdbcType="VARCHAR" />
+		<result column="autor" property="betrefftextid" jdbcType="VARCHAR" />
+		<result column="genre" property="haupttextid" jdbcType="VARCHAR" />
+		<result column="erscheinungsjahr" property="art" jdbcType="INTEGER" />
+		<result column="verlag_id" property="id" jdbcType="INTEGER" />
+		<result column="isbn" property="reserviert" jdbcType="VARCHAR" />
+	</resultMap>
 
+	<select id="selectAll" parameterClass="map" resultMap="result" >
+		SELECT
+		<include refid="selectFragment"/>
+		FROM buch AS buecherliste
+	</select>
 
 </sqlMap>
 
