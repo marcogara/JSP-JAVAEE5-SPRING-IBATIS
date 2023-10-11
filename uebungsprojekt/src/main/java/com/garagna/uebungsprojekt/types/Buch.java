@@ -2,8 +2,6 @@ package com.garagna.uebungsprojekt.types;
 
 public class Buch
 {
-	private Verlag verlag;
-
 	private int id;
 
 	private String titel;
@@ -14,9 +12,9 @@ public class Buch
 
 	private String erscheinungsjahr;
 
-	private int verlag_id;   // to change later with FK from Verlag class
-
 	private String isbn;
+
+	private Verlag verlag;
 
 	public int getId()
 	{
@@ -68,27 +66,6 @@ public class Buch
 		this.erscheinungsjahr = erscheinungsjahr;
 	}
 
-	public Verlag getVerlag()
-	{
-		return verlag;
-	}
-
-	public void setVerlag(Verlag verlag)
-	{
-		this.verlag = verlag;
-	}
-
-	// when the modelling Verlag is done we do not need verlag_id in this form
-	public int getVerlag_id()
-	{
-		return verlag_id;
-	}
-
-	public void setVerlag_id(int verlag_id)
-	{
-		this.verlag_id = verlag_id;
-	}
-
 	public String getIsbn()
 	{
 		return isbn;
@@ -97,6 +74,16 @@ public class Buch
 	public void setIsbn(String isbn)
 	{
 		this.isbn = isbn;
+	}
+
+	public Verlag getVerlag()
+	{
+		return verlag;
+	}
+
+	public void setVerlag(Verlag verlag)
+	{
+		this.verlag = verlag;
 	}
 
 }

@@ -32,7 +32,7 @@
 						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center;">
 
 							<ui:button action="#{Buecherliste.buttonHome_action}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-							<ui:button action="#{Buecherliste.buttonHome_verlag}" id="buttonVerlag" text="Verlag zeigen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+							<ui:button action="#{Buecherliste.buttonVerlag}" id="buttonVerlag" text="Verlag zeigen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 
 						</ui:panelLayout>
 

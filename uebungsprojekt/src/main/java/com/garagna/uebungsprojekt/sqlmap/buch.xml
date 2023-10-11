@@ -2,13 +2,18 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="buch">
 
+	<resultMap id="resultVerlag" class="Verlag" >
+		<result column="verlag_id" property="id" jdbcType="INTEGER" />
+	</resultMap>
+
+
 	<resultMap class="Buch" id="result">
 		<result column="buch_id" property="id" jdbcType="INTEGER" />
 		<result column="buch_titel" property="titel" jdbcType="VARCHAR" />
 		<result column="buch_autor" property="autor" jdbcType="VARCHAR" />
 		<result column="buch_genre" property="genre" jdbcType="VARCHAR" />
 		<result column="buch_erscheinungsjahr" property="erscheinungsjahr" jdbcType="INTEGER" />
-		<result column="buch_verlag_id" property="verlag_id" jdbcType="INTEGER" />
+		<result property="verlag" resultMap="buch.resultVerlag" />
 		<result column="buch_isbn" property="isbn" jdbcType="VARCHAR" />
 	</resultMap>
 
@@ -18,7 +23,7 @@
 		buch.autor AS buch_autor,
 		buch.genre AS buch_genre,
 		buch.erscheinungsjahr AS buch_erscheinungsjahr,
-		buch.verlag_id AS buch_verlag_id,
+		buch.verlag_id AS verlag_id,
 		buch.isbn AS buch_isbn
 	</sql>
 
@@ -27,12 +32,6 @@
 		<include refid="selectFragment"/>
 		FROM buch
 	</select>
-
-
-
-
-
-
 
 
 </sqlMap>

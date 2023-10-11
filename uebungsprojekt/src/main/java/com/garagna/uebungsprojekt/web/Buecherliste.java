@@ -76,7 +76,7 @@ public class Buecherliste extends AbstractPageBean
 		return "go_welcome";
 	}
 
-	public void buttonHome_verlag()
+	public void buttonVerlag()
 	{
 		// Registrieren reg = (Registrieren) getBean("Registrieren");
 		verlag_action();
@@ -99,10 +99,11 @@ public class Buecherliste extends AbstractPageBean
 			String autor = TextUtils.rpad(buch.getAutor(), 28, sp);
 			String genre = TextUtils.rpad(buch.getGenre(), 20, sp);
 			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 10, sp);
+			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 20, sp);
 			String isbn;
 			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
-			String anzeige = id + titel + autor + genre + year + isbn;            // verlag noch zu implementieren !!!!!!!
+			String anzeige = id + titel + autor + genre + year + isbn + velagName;            // verlag noch zu implementieren !!!!!!!
 
 			items.add(new Option(buch.getId(), anzeige));
 		}
