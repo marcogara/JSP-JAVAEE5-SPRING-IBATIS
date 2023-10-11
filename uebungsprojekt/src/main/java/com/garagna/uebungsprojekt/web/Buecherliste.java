@@ -12,6 +12,7 @@ import com.sun.rave.web.ui.model.Option;
 
 public class Buecherliste extends AbstractPageBean
 {
+	//The string you've defined, "\u00A0", represents a non-breaking space character. A non-breaking space is a type of space character that prevents line breaks or word wraps in text. It's often used to ensure that two words or characters are not separated at the end of a line, especially in situations where you don't want them to be split across lines. It has a visual representation similar to a regular space, but it has different behavior in text layout.
 	private final String SP = "\u00A0";
 
 	private TransactionBuecherliste transactionBuecherliste;
@@ -72,51 +73,18 @@ public class Buecherliste extends AbstractPageBean
 			int idI = buch.getId(); // Assuming buch.getId() returns an int
 			String idAsString = String.valueOf(idI);
 
-			String id = TextUtils.rpad(idAsString, 9, "\u00A0");
-			String titel = TextUtils.rpad(buch.getTitel(), 33, "\u00A0");
-			String autor = TextUtils.rpad(buch.getAutor(), 28, "\u00A0");
-			String genre = TextUtils.rpad(buch.getGenre(), 20, "\u00A0");
-			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 10, "\u00A0");
+			String id = TextUtils.rpad(idAsString, 9, sp);
+			String titel = TextUtils.rpad(buch.getTitel(), 33, sp);
+			String autor = TextUtils.rpad(buch.getAutor(), 28, sp);
+			String genre = TextUtils.rpad(buch.getGenre(), 20, sp);
+			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 10, sp);
 			String isbn;
-			isbn = TextUtils.rpad(buch.getIsbn(), 20, "\u00A0");
+			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
-			String anzeige = id + titel + autor + genre + year + isbn;
+			String anzeige = id + titel + autor + genre + year + isbn;            // verlag noch zu implementieren !!!!!!!
 
 			items.add(new Option(buch.getId(), anzeige));
 		}
-		this.listboxBuecher.setItems(items);
-	}
-
-	public void buttonListe_action1()
-	{
-		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
-		List<Option> items = new LinkedList<Option>();
-		String sp = this.SP;
-
-		// Define the column widths
-		int idWidth = 15;
-		int titelWidth = 30;
-		int autorWidth = 20;
-		int genreWidth = 15;
-		int jahrWidth = 10;
-		int isbnWidth = 15;
-
-		for (Buch buch : list)
-		{
-			StringBuilder formattedTable = new StringBuilder();
-
-			formattedTable.append(String.format("%-" + idWidth + "s", buch.getId()));
-			formattedTable.append(sp);
-			formattedTable.append(String.format("%-" + titelWidth + "s", buch.getTitel()));
-			formattedTable.append(sp);
-			formattedTable.append(String.format("%-" + autorWidth + "s", buch.getAutor()));
-			formattedTable.append(String.format("%-" + genreWidth + "s", buch.getGenre()));
-			formattedTable.append(String.format("%-" + jahrWidth + "s", buch.getErscheinungsjahr()));
-			formattedTable.append(String.format("%-" + isbnWidth + "s", buch.getIsbn()));
-			items.add(new Option(buch.getId(), formattedTable.toString()));
-
-		}
-
 		this.listboxBuecher.setItems(items);
 	}
 

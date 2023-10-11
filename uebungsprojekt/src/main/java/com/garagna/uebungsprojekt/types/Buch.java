@@ -2,7 +2,6 @@ package com.garagna.uebungsprojekt.types;
 
 public class Buch
 {
-
 	private int id;
 
 	private String titel;
