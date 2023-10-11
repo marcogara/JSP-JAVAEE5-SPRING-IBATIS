@@ -1,10 +1,10 @@
 package com.garagna.uebungsprojekt.web;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.garagna.uebungsprojekt.transaction.TransactionBuecherliste;
+import com.garagna.uebungsprojekt.business.TextUtils;
 import com.garagna.uebungsprojekt.types.Buch;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import com.sun.rave.web.ui.component.Listbox;
@@ -12,6 +12,8 @@ import com.sun.rave.web.ui.model.Option;
 
 public class Buecherliste extends AbstractPageBean
 {
+	private final String SP = "\u00A0";
+
 	private TransactionBuecherliste transactionBuecherliste;
 
 	public void setTransactionBuecherliste(TransactionBuecherliste transactionBuecherliste)
@@ -31,52 +33,16 @@ public class Buecherliste extends AbstractPageBean
 		this.listboxBuecher = l;
 	}
 
-	private Listbox listboxBuecher1 = new Listbox();
+	private Listbox listboxID = new Listbox();
 
-	public Listbox getListboxBuecher1()
+	public Listbox getListboxID()
 	{
-		return listboxBuecher1;
+		return listboxID;
 	}
 
-	public void setListboxBuecher1(Listbox l)
+	public void setListboxID(Listbox l)
 	{
-		this.listboxBuecher1 = l;
-	}
-
-	private Listbox listboxBuecher2 = new Listbox();
-
-	public Listbox getListboxBuecher2()
-	{
-		return listboxBuecher2;
-	}
-
-	public void setListboxBuecher2(Listbox l)
-	{
-		this.listboxBuecher2 = l;
-	}
-
-	private Listbox listboxBuecher3 = new Listbox();
-
-	public Listbox getListboxBuecher3()
-	{
-		return listboxBuecher3;
-	}
-
-	public void setListboxBuecher3(Listbox l)
-	{
-		this.listboxBuecher3 = l;
-	}
-
-	private Listbox listboxBuecher4 = new Listbox();
-
-	public Listbox getListboxBuecher4()
-	{
-		return listboxBuecher4;
-	}
-
-	public void setListboxBuecher4(Listbox l)
-	{
-		this.listboxBuecher4 = l;
+		this.listboxID = l;
 	}
 
 	@Override
@@ -99,65 +65,59 @@ public class Buecherliste extends AbstractPageBean
 	{
 		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
 		List<Option> items = new LinkedList<Option>();
+		String sp = this.SP;
 
 		for (Buch buch : list)
 		{
-			String anzeige = buch.toString();
+			int idI = buch.getId(); // Assuming buch.getId() returns an int
+			String idAsString = String.valueOf(idI);
+
+			String id = TextUtils.rpad(idAsString, 9, "\u00A0");
+			String titel = TextUtils.rpad(buch.getTitel(), 33, "\u00A0");
+			String autor = TextUtils.rpad(buch.getAutor(), 28, "\u00A0");
+			String genre = TextUtils.rpad(buch.getGenre(), 20, "\u00A0");
+			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 10, "\u00A0");
+			String isbn;
+			isbn = TextUtils.rpad(buch.getIsbn(), 20, "\u00A0");
+
+			String anzeige = id + titel + autor + genre + year + isbn;
+
 			items.add(new Option(buch.getId(), anzeige));
 		}
 		this.listboxBuecher.setItems(items);
 	}
 
-	public void buttonListe1_action()
+	public void buttonListe_action1()
 	{
 		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
 		List<Option> items = new LinkedList<Option>();
+		String sp = this.SP;
+
+		// Define the column widths
+		int idWidth = 15;
+		int titelWidth = 30;
+		int autorWidth = 20;
+		int genreWidth = 15;
+		int jahrWidth = 10;
+		int isbnWidth = 15;
 
 		for (Buch buch : list)
 		{
-			String anzeige = buch.getAutor();
-			items.add(new Option(buch.getId(), anzeige));
+			StringBuilder formattedTable = new StringBuilder();
+
+			formattedTable.append(String.format("%-" + idWidth + "s", buch.getId()));
+			formattedTable.append(sp);
+			formattedTable.append(String.format("%-" + titelWidth + "s", buch.getTitel()));
+			formattedTable.append(sp);
+			formattedTable.append(String.format("%-" + autorWidth + "s", buch.getAutor()));
+			formattedTable.append(String.format("%-" + genreWidth + "s", buch.getGenre()));
+			formattedTable.append(String.format("%-" + jahrWidth + "s", buch.getErscheinungsjahr()));
+			formattedTable.append(String.format("%-" + isbnWidth + "s", buch.getIsbn()));
+			items.add(new Option(buch.getId(), formattedTable.toString()));
+
 		}
-		this.listboxBuecher1.setItems(items);
-	}
 
-	public void buttonListe2_action()
-	{
-		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
-		List<Option> items = new LinkedList<Option>();
-
-		for (Buch buch : list)
-		{
-			String anzeige = buch.getGenre();
-			items.add(new Option(buch.getId(), anzeige));
-		}
-		this.listboxBuecher2.setItems(items);
-	}
-
-	public void buttonListe3_action()
-	{
-		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
-		List<Option> items = new LinkedList<Option>();
-
-		for (Buch buch : list)
-		{
-			String anzeige = buch.getErscheinungsjahr();
-			items.add(new Option(buch.getId(), anzeige));
-		}
-		this.listboxBuecher3.setItems(items);
-	}
-
-	public void buttonListe4_action()
-	{
-		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
-		List<Option> items = new LinkedList<Option>();
-
-		for (Buch buch : list)
-		{
-			String anzeige = buch.getIsbn();
-			items.add(new Option(buch.getId(), anzeige));
-		}
-		this.listboxBuecher4.setItems(items);
+		this.listboxBuecher.setItems(items);
 	}
 
 }
