@@ -9,6 +9,7 @@ public class TransactionBuecherliste
 {
 
 	private BuchDAO buchDAO;
+	// private VerlagDAO verlagDAO ??
 
 	public void setBuchDAO(BuchDAO buchDAO)
 	{
