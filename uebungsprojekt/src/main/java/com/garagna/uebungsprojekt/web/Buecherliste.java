@@ -1,5 +1,6 @@
 package com.garagna.uebungsprojekt.web;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,12 +31,61 @@ public class Buecherliste extends AbstractPageBean
 		this.listboxBuecher = l;
 	}
 
+	private Listbox listboxBuecher1 = new Listbox();
+
+	public Listbox getListboxBuecher1()
+	{
+		return listboxBuecher1;
+	}
+
+	public void setListboxBuecher1(Listbox l)
+	{
+		this.listboxBuecher1 = l;
+	}
+
+	private Listbox listboxBuecher2 = new Listbox();
+
+	public Listbox getListboxBuecher2()
+	{
+		return listboxBuecher2;
+	}
+
+	public void setListboxBuecher2(Listbox l)
+	{
+		this.listboxBuecher2 = l;
+	}
+
+	private Listbox listboxBuecher3 = new Listbox();
+
+	public Listbox getListboxBuecher3()
+	{
+		return listboxBuecher3;
+	}
+
+	public void setListboxBuecher3(Listbox l)
+	{
+		this.listboxBuecher3 = l;
+	}
+
+	private Listbox listboxBuecher4 = new Listbox();
+
+	public Listbox getListboxBuecher4()
+	{
+		return listboxBuecher4;
+	}
+
+	public void setListboxBuecher4(Listbox l)
+	{
+		this.listboxBuecher4 = l;
+	}
+
 	@Override
 	public void prerender()
 	{
 		// prerender sorgt dafür, dass die Daten am Anfang der Seite angezeigt werden.
 
 		buttonListe_action();
+
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
 	}
 
@@ -56,6 +106,58 @@ public class Buecherliste extends AbstractPageBean
 			items.add(new Option(buch.getId(), anzeige));
 		}
 		this.listboxBuecher.setItems(items);
+	}
+
+	public void buttonListe1_action()
+	{
+		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
+		List<Option> items = new LinkedList<Option>();
+
+		for (Buch buch : list)
+		{
+			String anzeige = buch.getAutor();
+			items.add(new Option(buch.getId(), anzeige));
+		}
+		this.listboxBuecher1.setItems(items);
+	}
+
+	public void buttonListe2_action()
+	{
+		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
+		List<Option> items = new LinkedList<Option>();
+
+		for (Buch buch : list)
+		{
+			String anzeige = buch.getGenre();
+			items.add(new Option(buch.getId(), anzeige));
+		}
+		this.listboxBuecher2.setItems(items);
+	}
+
+	public void buttonListe3_action()
+	{
+		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
+		List<Option> items = new LinkedList<Option>();
+
+		for (Buch buch : list)
+		{
+			String anzeige = buch.getErscheinungsjahr();
+			items.add(new Option(buch.getId(), anzeige));
+		}
+		this.listboxBuecher3.setItems(items);
+	}
+
+	public void buttonListe4_action()
+	{
+		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
+		List<Option> items = new LinkedList<Option>();
+
+		for (Buch buch : list)
+		{
+			String anzeige = buch.getIsbn();
+			items.add(new Option(buch.getId(), anzeige));
+		}
+		this.listboxBuecher4.setItems(items);
 	}
 
 }

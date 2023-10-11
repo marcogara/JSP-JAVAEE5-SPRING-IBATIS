@@ -15,12 +15,20 @@
 
 						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 
+						<h:outputLabel for="listboxTitel" value="ID" style="font-size: 24px; padding: 10px 10px 30px; margin-right: 10px; text-align:left;"/>
+						<h:outputLabel for="listboxTitel1" value="TITEL" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 240px; text-align:center;"/>
+						<h:outputLabel for="listboxTitel2" value="AUTOR" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 70px; text-align:center;"/>
+						<h:outputLabel for="listboxTitel2" value="GENRE" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 10px; text-align:center;"/>
+						<h:outputLabel for="listboxTitel2" value="JAHR" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 10px; text-align:center;"/>
+						<h:outputLabel for="listboxTitel2" value="ISBN" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 10px; text-align:center;"/>
+
+
 						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
 
-							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelLogin">
+							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="5" id="gridPanelLogin">
 
 
-								<ui:listbox binding="#{Buecherliste.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 1000px; font-family: monospace;"/>
+								<ui:listbox binding="#{Buecherliste.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 1400px; font-family: monospace;"/>
 
 
 							</h:panelGrid>
