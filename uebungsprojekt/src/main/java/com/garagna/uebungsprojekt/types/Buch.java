@@ -2,6 +2,8 @@ package com.garagna.uebungsprojekt.types;
 
 public class Buch
 {
+	private Verlag verlag;
+
 	private int id;
 
 	private String titel;
@@ -66,6 +68,17 @@ public class Buch
 		this.erscheinungsjahr = erscheinungsjahr;
 	}
 
+	public Verlag getVerlag()
+	{
+		return verlag;
+	}
+
+	public void setVerlag(Verlag verlag)
+	{
+		this.verlag = verlag;
+	}
+
+	// when the modelling Verlag is done we do not need verlag_id in this form
 	public int getVerlag_id()
 	{
 		return verlag_id;

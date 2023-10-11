@@ -6,5 +6,6 @@
 	</bean>
 	<bean id="transactionBuecherliste" class="com.garagna.uebungsprojekt.transaction.TransactionBuecherliste">
 		<property name="buchDAO" ref="buchDAO"/>
+		<property name="verlagDAO" ref="verlagDAO"/>
 	</bean>
 </beans>

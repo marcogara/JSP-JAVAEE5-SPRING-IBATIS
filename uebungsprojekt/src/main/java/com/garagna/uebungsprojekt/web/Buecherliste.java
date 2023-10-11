@@ -6,6 +6,7 @@ import java.util.List;
 import com.garagna.uebungsprojekt.transaction.TransactionBuecherliste;
 import com.garagna.uebungsprojekt.business.TextUtils;
 import com.garagna.uebungsprojekt.types.Buch;
+import com.garagna.uebungsprojekt.types.Verlag;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
 import com.sun.rave.web.ui.component.Listbox;
 import com.sun.rave.web.ui.model.Option;
@@ -34,6 +35,18 @@ public class Buecherliste extends AbstractPageBean
 		this.listboxBuecher = l;
 	}
 
+	private Listbox listboxVerlag;
+
+	public Listbox getListboxVerlag()
+	{
+		return listboxVerlag;
+	}
+
+	public void setListboxVerlag(Listbox listboxVerlag)
+	{
+		this.listboxVerlag = listboxVerlag;
+	}
+
 	private Listbox listboxID = new Listbox();
 
 	public Listbox getListboxID()
@@ -56,12 +69,20 @@ public class Buecherliste extends AbstractPageBean
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
 	}
 
+	// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
 	public String buttonHome_action()
 	{
 		// Registrieren reg = (Registrieren) getBean("Registrieren");
 		return "go_welcome";
 	}
 
+	public void buttonHome_verlag()
+	{
+		// Registrieren reg = (Registrieren) getBean("Registrieren");
+		verlag_action();
+	}
+
+	// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
 	public void buttonListe_action()
 	{
 		List<Buch> list = this.transactionBuecherliste.buecherlisteLaden();
@@ -86,6 +107,34 @@ public class Buecherliste extends AbstractPageBean
 			items.add(new Option(buch.getId(), anzeige));
 		}
 		this.listboxBuecher.setItems(items);
+	}
+
+	public void verlag_action()
+	{
+
+		List<Verlag> list = this.transactionBuecherliste.verlagLaden();
+
+		List<Option> items = new LinkedList<Option>();
+		String sp = this.SP;
+
+		for (Verlag verlag : list)
+		{
+			int idI = verlag.getId(); // Assuming buch.getId() returns an int
+			String idAsString = String.valueOf(idI);
+
+			String id = TextUtils.rpad(idAsString, 9, sp);
+			String name = TextUtils.rpad(verlag.getName(), 33, sp);
+			String sitz = TextUtils.rpad(verlag.getSitz(), 28, sp);
+			int jahr = verlag.getGruendungsjahr(); // Assuming buch.getId() returns an int
+			String jahrAsString = String.valueOf(jahr);
+
+			String year = TextUtils.rpad(jahrAsString, 10, sp);
+
+			String anzeige = id + name + sitz + year;
+
+			items.add(new Option(verlag.getId(), anzeige));
+		}
+		this.listboxVerlag.setItems(items);
 	}
 
 }
@@ -143,7 +192,7 @@ public class Buecherliste extends AbstractPageBean
  * you can call it from this page like it was done in Registrieren.java zb.
  *
  *
- * in managed-beans.xml the bean corrisponding the operation you want to have need to have the implementation fro the class its transaction class like so :
+ * in managed-beans.xml the bean corrisponding the operation you want to have need to have the implementation from the class its transaction class like so :
  *
  * <managed-bean>
  * <managed-bean-name>Registrieren</managed-bean-name>
@@ -188,9 +237,7 @@ public class Buecherliste extends AbstractPageBean
  *
  *
  *
- * beispiel für liste zum ui übertragen
+ * beispiel für liste zum ui übertragen public void buttonListe_action()
  *
- * List<Buch> list = this.transactionBuecherliste.buecherlisteLaden(); List<Option> items = new LinkedList<Option>();
  *
- * for (Buch buch : list) { String anzeige = buch.toString(); items.add(new Option(buch.getId(), anzeige)); } this.listboxBuecher.setItems(items);
  */
