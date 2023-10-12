@@ -3,9 +3,8 @@
 <sqlMap namespace="buch">
 
 	<resultMap id="resultVerlag" class="Verlag" >
-		<result column="verlag_id" property="id" jdbcType="INTEGER" />
+		<result column="buch_verlag_id" property="id" jdbcType="INTEGER" />
 	</resultMap>
-
 
 	<resultMap class="Buch" id="result">
 		<result column="buch_id" property="id" jdbcType="INTEGER" />
@@ -23,7 +22,7 @@
 		buch.autor AS buch_autor,
 		buch.genre AS buch_genre,
 		buch.erscheinungsjahr AS buch_erscheinungsjahr,
-		buch.verlag_id AS verlag_id,
+		buch.verlag_id AS buch_verlag_id,
 		buch.isbn AS buch_isbn
 	</sql>
 

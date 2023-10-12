@@ -1,6 +1,9 @@
 package com.garagna.uebungsprojekt.transaction;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.garagna.uebungsprojekt.dao.BuchDAO;
 import com.garagna.uebungsprojekt.dao.VerlagDAO;
@@ -10,7 +13,6 @@ import com.garagna.uebungsprojekt.types.Buch;
 
 public class TransactionBuecherliste
 {
-
 	private BuchDAO buchDAO;
 
 	public void setBuchDAO(BuchDAO buchDAO)
@@ -18,17 +20,38 @@ public class TransactionBuecherliste
 		this.buchDAO = buchDAO;
 	}
 
-	public List<Buch> buecherlisteLaden()
-	{
-		List<Buch> list = this.buchDAO.selectAll();
-		return list;
-	}
-
 	private VerlagDAO verlagDAO;
 
 	public void setVerlagDAO(VerlagDAO verlagDAO)
 	{
 		this.verlagDAO = verlagDAO;
+	}
+
+	/**
+	 * public List<Buch> buecherlisteLaden() { List<Buch> list = this.buchDAO.selectAll(); return list; }
+	 *
+	 *
+	 * *
+	 */
+	public Map<Integer, Buch> buecherlisteLaden() // ?????????
+	{
+		List<Verlag> verlagList = this.verlagDAO.selectAll();
+		Map<Integer, Verlag> verlagMap = new HashMap<Integer, Verlag>();
+		for (Verlag verlag : verlagList)
+		{
+			verlagMap.put(verlag.getId(), verlag);
+		}
+
+		List<Buch> buchList = this.buchDAO.selectAll();
+		Map<Integer, Buch> buchMap = new HashMap<Integer, Buch>();
+		for (Buch buch : buchList)
+		{
+			Verlag verlag = buch.getVerlag();
+			verlag = verlagMap.get(verlag.getId());
+			buch.setVerlag(verlag);
+			buchMap.put(buch.getId(), buch);
+		}
+		return buchMap;
 	}
 
 	public List<Verlag> verlagLaden()
