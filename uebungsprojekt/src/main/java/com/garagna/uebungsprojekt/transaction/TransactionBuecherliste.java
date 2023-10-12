@@ -30,14 +30,14 @@ public class TransactionBuecherliste
 	public Map<Integer, Buch> buecherlisteLaden()
 	{
 		List<Verlag> verlagList = this.verlagDAO.selectAll();
-		Map<Integer, Verlag> verlagMap = new HashMap<Integer, Verlag>();
+		Map<Integer, Verlag> verlagMap = new LinkedHashMap<>();
 		for (Verlag verlag : verlagList)
 		{
 			verlagMap.put(verlag.getId(), verlag);
 		}
 
 		List<Buch> buchList = this.buchDAO.selectAll();
-		Map<Integer, Buch> buchMap = new HashMap<Integer, Buch>();
+		Map<Integer, Buch> buchMap = new LinkedHashMap<>();
 		for (Buch buch : buchList)
 		{
 			Verlag verlag = buch.getVerlag();
