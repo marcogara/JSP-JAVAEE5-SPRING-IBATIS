@@ -66,7 +66,7 @@ public class Buecherliste extends AbstractPageBean
 	{
 		// prerender sorgt dafür, dass die Daten am Anfang der Seite angezeigt werden.
 
-		buttonListe_action();
+		buchlisteErzeugen();
 
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
 	}
@@ -85,7 +85,7 @@ public class Buecherliste extends AbstractPageBean
 	}
 
 	// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
-	public void buttonListe_action()
+	public void buchlisteErzeugen()
 	{
 		Map<Integer, Buch> buchMap = this.transactionBuecherliste.buecherlisteLaden();
 		List<Option> items = new LinkedList<Option>();
@@ -97,11 +97,11 @@ public class Buecherliste extends AbstractPageBean
 			String idAsString = String.valueOf(idI);
 
 			String id = TextUtils.rpad(idAsString, 6, sp);
-			String titel = TextUtils.rpad(buch.getTitel(), 33, sp);
-			String autor = TextUtils.rpad(buch.getAutor(), 28, sp);
+			String titel = TextUtils.rpad(buch.getTitel(), 50, sp);
+			String autor = TextUtils.rpad(buch.getAutor(), 38, sp);
 			String genre = TextUtils.rpad(buch.getGenre(), 18, sp);
 			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 12, sp);
-			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 38, sp);
+			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 60, sp);
 			String isbn;
 			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
@@ -153,7 +153,7 @@ public class Buecherliste extends AbstractPageBean
 			String idAsString = String.valueOf(idI);
 
 			String id = TextUtils.rpad(idAsString, 9, sp);
-			String name = TextUtils.rpad(verlag.getName(), 33, sp);
+			String name = TextUtils.rpad(verlag.getName(), 60, sp);
 			String sitz = TextUtils.rpad(verlag.getSitz(), 28, sp);
 			int jahr = verlag.getGruendungsjahr(); // Assuming buch.getId() returns an int String jahrAsString = String.valueOf(jahr);
 			String jahrAsString = String.valueOf(jahr);
@@ -168,7 +168,6 @@ public class Buecherliste extends AbstractPageBean
 
 }
 
-// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
 /**
  * step to add new functionality in the app to do all the other operations (to read from the database) here we need the booklist
  *

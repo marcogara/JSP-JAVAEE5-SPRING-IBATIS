@@ -11,17 +11,25 @@
                 </ui:head>
 
 				<ui:body id="body1" style="background-color: black;">
+
 					<ui:form id="form1">
+
 
 						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 
-						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center;">
+						<ui:panelLayout id="layoutPanel" panelLayout="grid" style="text-align: center;">
+							<ui:image id="imageBild" style="max-height: 800.0px; max-width: 1600.0px;" url="/images/pexels-ivo-rainha-1261180.jpg" />
 
-							<ui:button action="#{Welcome.buttonRegistrieren_action}" id="buttonRegistrieren" text="Registrieren" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-							<ui:button action="#{Welcome.buttonBuecherliste_action}" id="buttonBuecherliste" text="Bücherliste ansehen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-							<ui:button action="#{Welcome.buttonAusleihen_action}" id="buttonAusleihen" text="Buch ausleihen" style="font-size: 18px; padding: 10px 20px 30px 30px;"/>
 
 						</ui:panelLayout>
+
+						<ui:panelLayout id="layoutPanelButtons" panelLayout="flow" style="text-align: center;">
+							<ui:button action="#{Welcome.buttonRegistrieren_action}" id="buttonRegistrieren" text="Registrieren" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 20px; margin-top: 40px"/>
+							<ui:button action="#{Welcome.buttonBuecherliste_action}" id="buttonBuecherliste" text="Bücherliste ansehen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 20px; margin-top: 40px"/>
+							<ui:button action="#{Welcome.buttonAusleihen_action}" id="buttonAusleihen" text="Buch ausleihen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-top: 40px"/>
+						</ui:panelLayout>
+
+
 					</ui:form>
 				</ui:body>
 			</ui:html>
