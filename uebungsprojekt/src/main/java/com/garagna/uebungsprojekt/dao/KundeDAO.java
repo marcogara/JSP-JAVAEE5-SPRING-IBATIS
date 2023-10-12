@@ -9,4 +9,6 @@ public interface KundeDAO
 	int delete(Integer nummer);
 
 	// Kunde select(Integer nummer);
+	// int askAvailableID(); //???
+	Integer getNextAvailableId();
 }

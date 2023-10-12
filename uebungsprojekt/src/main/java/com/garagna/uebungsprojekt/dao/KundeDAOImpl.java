@@ -20,6 +20,14 @@ public class KundeDAOImpl
 		return rows;
 	}
 
+	@Override
+	public Integer getNextAvailableId() // ??????????
+
+	{
+		Integer nummer = (Integer) getSqlMapClientTemplate().queryForObject("kunde.getNextAvailableId");
+		return nummer;
+	}
+
 	/**
 	 * @Override public Kunde select(Integer intgr) {
 	 *

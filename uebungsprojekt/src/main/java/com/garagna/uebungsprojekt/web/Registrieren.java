@@ -74,10 +74,25 @@ public class Registrieren extends AbstractPageBean
 		this.textFieldKN = textFieldKN;
 	}
 
+	private TextField textFieldBenutzernummer = new TextField();
+
+	public void setTextFieldBenutzernummer(TextField textFieldBenutzernummer)
+	{
+		this.textFieldBenutzernummer = textFieldBenutzernummer;
+	}
+
+	public TextField getTextFieldBenutzernummer()
+	{
+		return textFieldBenutzernummer;
+	}
+
 	@Override
 	public void prerender()
 	{
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
+
+		// kundennummer fragen und autofüllen ? next available id.
+		// this.textFieldBenutzernummer.setText(this.transactionRegistrieren.loadNextAvailableId());
 	}
 
 	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?

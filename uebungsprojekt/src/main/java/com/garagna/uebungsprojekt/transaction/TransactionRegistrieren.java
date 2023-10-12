@@ -34,4 +34,10 @@ public class TransactionRegistrieren
 		return ok;
 	}
 
+	public Integer loadNextAvailableId()
+	{
+		Integer id = this.kundeDAO.getNextAvailableId();
+		return id;
+	}
+
 }
