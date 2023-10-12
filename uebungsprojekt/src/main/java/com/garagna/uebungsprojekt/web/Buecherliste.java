@@ -96,16 +96,16 @@ public class Buecherliste extends AbstractPageBean
 			int idI = buch.getId(); // Assuming buch.getId() returns an int
 			String idAsString = String.valueOf(idI);
 
-			String id = TextUtils.rpad(idAsString, 9, sp);
+			String id = TextUtils.rpad(idAsString, 6, sp);
 			String titel = TextUtils.rpad(buch.getTitel(), 33, sp);
 			String autor = TextUtils.rpad(buch.getAutor(), 28, sp);
-			String genre = TextUtils.rpad(buch.getGenre(), 20, sp);
-			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 10, sp);
-			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 20, sp);
+			String genre = TextUtils.rpad(buch.getGenre(), 18, sp);
+			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 12, sp);
+			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 38, sp);
 			String isbn;
 			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
-			String anzeige = id + titel + autor + genre + year + isbn + velagName;
+			String anzeige = id + titel + autor + genre + year + velagName + isbn;
 
 			items.add(new Option(buch.getId(), anzeige));
 		}
@@ -127,12 +127,12 @@ public class Buecherliste extends AbstractPageBean
 			String titel = TextUtils.rpad(buch.getTitel(), 33, sp);
 			String autor = TextUtils.rpad(buch.getAutor(), 28, sp);
 			String genre = TextUtils.rpad(buch.getGenre(), 20, sp);
-			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 10, sp);
-			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 20, sp);
+			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 8, sp);
+			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 40, sp);
 			String isbn;
 			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
-			String anzeige = id + titel + autor + genre + year + isbn + velagName;
+			String anzeige = id + titel + autor + genre + year + velagName + isbn;
 
 			items.add(new Option(buch.getId(), anzeige));
 		}

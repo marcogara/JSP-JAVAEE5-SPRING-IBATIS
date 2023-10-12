@@ -27,13 +27,7 @@ public class TransactionBuecherliste
 		this.verlagDAO = verlagDAO;
 	}
 
-	/**
-	 * public List<Buch> buecherlisteLaden() { List<Buch> list = this.buchDAO.selectAll(); return list; }
-	 *
-	 *
-	 * *
-	 */
-	public Map<Integer, Buch> buecherlisteLaden() // ?????????
+	public Map<Integer, Buch> buecherlisteLaden()
 	{
 		List<Verlag> verlagList = this.verlagDAO.selectAll();
 		Map<Integer, Verlag> verlagMap = new HashMap<Integer, Verlag>();

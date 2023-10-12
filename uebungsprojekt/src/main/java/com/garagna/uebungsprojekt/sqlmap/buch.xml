@@ -30,6 +30,7 @@
 		SELECT
 		<include refid="selectFragment"/>
 		FROM buch
+		ORDER BY buch.id
 	</select>
 
 
