@@ -112,9 +112,8 @@ public class Registrieren extends AbstractPageBean
 		this.transactionRegistrieren.speichern(kunde);
 
 		// Implement any validation logic here
-		// SQL mit Kundendaten abfragen und ID abrufen
+		// only after the speichern function call kunde has an id that can be asked because the sql query return the id (nummer) from the DB the query is in kunde.xml
 		int id = kunde.getNummer();
-
 		this.textFieldBenutzernummer.setText(id);
 
 		// Redirect to a success page or perform other actions as needed

@@ -20,21 +20,32 @@
 								<ui:textField binding="#{Registrieren.textFieldGuthaben}" converter="javax.faces.Integer" id="textFieldGuthaben" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 							</h:panelGrid>
 						</ui:panelLayout>
-						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: left;">
-							<ui:button action="#{Registrieren.buttonHome_action()}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
-							<ui:button action="#{Registrieren.buttonBestaetigung_action()}" id="buttonBestaetigung" text="Bestätigen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
-							<ui:button action="#{Registrieren.buttonKundenLoeschen_action()}" id="buttonKundenloeschen" text="Löschen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
+						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: left; margin-bottom: 50px; margin-left: 50px;">
+							<ui:button action="#{Registrieren.buttonHome_action()}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 30px;"/>
+							<ui:button action="#{Registrieren.buttonBestaetigung_action()}" id="buttonBestaetigung" text="Bestätigen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 30px;"/>
+							<ui:button action="#{Registrieren.buttonKundenLoeschen_action()}" id="buttonKundenloeschen" text="Löschen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 30px;"/>
 							<ui:button action="#{Registrieren.buttonKundeSelect_action()}" id="buttonKundeSelect" text="Select" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 10px;"/>
-							<ui:label for="textFieldKN" id="labelKN" text="kundennummer" requiredIndicator="true" style="font-size: 18px; margin-top:25px;"/>
-							<ui:textField binding="#{Registrieren.textFieldKN}" converter="javax.faces.Integer" id="textFieldKN" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 						</ui:panelLayout>
-						<h:outputText value="#{Registrieren.errorMessage}" />
-						<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="5" id="gridPanelKundendaten" style="margin-top: 50px">
-							<ui:listbox converter="javax.faces.Integer" id="listboxKundendaten" rows="10" style="width: 800px; font-family: monospace; font-size: 14px" styleClass="black-listbox"/>
-						</h:panelGrid>
+						<h:outputText value="#{Registrieren.errorMessage}" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-top: 50px; margin-right: 120px;"/>
 					</ui:form>
 				</ui:body>
 			</ui:html>
 		</ui:page>
 	</f:view>
 </jsp:root>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--       	<ui:label for="textFieldKN" id="labelKN" text="kundennummer" requiredIndicator="true" style="font-size: 18px; margin-top:25px;"/> -->
+				<!--   			<ui:textField binding="#{Registrieren.textFieldKN}" converter="javax.faces.Integer" id="textFieldKN" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>  -->
