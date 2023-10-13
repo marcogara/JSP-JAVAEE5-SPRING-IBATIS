@@ -52,5 +52,4 @@ public class TransactionBuecherliste
 		List<Verlag> list = this.verlagDAO.selectAll();
 		return list;
 	}
-
 }

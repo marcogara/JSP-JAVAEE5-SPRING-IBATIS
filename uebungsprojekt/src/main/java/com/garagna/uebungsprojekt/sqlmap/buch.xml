@@ -33,6 +33,5 @@
 		ORDER BY buch.id
 	</select>
 
-
 </sqlMap>
 

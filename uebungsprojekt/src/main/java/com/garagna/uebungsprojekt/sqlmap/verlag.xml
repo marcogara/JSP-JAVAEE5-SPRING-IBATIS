@@ -22,5 +22,4 @@
 		FROM verlag
 	</select>
 
-
 </sqlMap>

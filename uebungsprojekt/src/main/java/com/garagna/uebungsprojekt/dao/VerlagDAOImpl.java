@@ -21,5 +21,4 @@ public class VerlagDAOImpl
 		List<Verlag> list = getSqlMapClientTemplate().queryForList("verlag.selectAll");
 		return list;
 	}
-
 }

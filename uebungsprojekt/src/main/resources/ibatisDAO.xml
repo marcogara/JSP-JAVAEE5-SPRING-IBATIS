@@ -6,7 +6,6 @@
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
 
-
 	<bean id="buchDAO" class="com.garagna.uebungsprojekt.dao.BuchDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
