@@ -109,9 +109,14 @@ public class Registrieren extends AbstractPageBean
 		// this.textFieldBenutzernummer.setText(this.transactionRegistrieren.loadNextAvailableId());
 	}
 
+	public String buttonHome_action()
+	{
+		// Registrieren reg = (Registrieren) getBean("Registrieren");
+		return "go_welcome";
+	}
+
 	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?
 	{
-
 		String vorname = (String) this.textFieldBenutzernvorname.getText();  // alles muss so gemacht werden
 		String name = (String) this.textFieldBenutzernnachname.getText();
 		Integer guthaben = (Integer) this.textFieldGuthaben.getText();
@@ -134,7 +139,6 @@ public class Registrieren extends AbstractPageBean
 		// Redirect to a success page or perform other actions as needed
 		// refresh page and display kundendaten registration with kundennummer and confirmation. after that kunde can go to Ausleihen page for instance....
 		this.errorMessage = "Registrierung erfolgreich. Sie sind Kundennummer: " + id;   // ??
-
 	}
 
 	public void buttonKundenLoeschen_action() // ist String als Rückgabewert korrekt?
@@ -146,15 +150,10 @@ public class Registrieren extends AbstractPageBean
 		this.transactionRegistrieren.loeschen(kundennummer);
 
 		this.form.discardSubmittedValues("registrieren");
+		//TODO: Prüfung, ob der Kunde gelöscht werden kann, z.B. positiver oder Nullsaldo und kein Ausleihbuch offen.
+		clearAllFields();
 
-		this.textFieldBenutzernvorname.setText(null);
-		this.textFieldBenutzernnachname.setText(null);
-		this.textFieldGuthaben.setText(null);
-		this.textFieldBenutzernummer.setText(null);
-		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
-		this.textFieldKN.setText(null);
-
-		this.errorMessage = "kunde gelöscht";   // ??
+		this.errorMessage = "kunde gelöscht";
 	}
 
 	public void buttonKundeSelect_action()
@@ -198,12 +197,6 @@ public class Registrieren extends AbstractPageBean
 		this.textFieldBenutzernummer.setText(null);
 		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
 		this.textFieldKN.setText(null);
-	}
-
-	public String buttonHome_action()
-	{
-		// Registrieren reg = (Registrieren) getBean("Registrieren");
-		return "go_welcome";
 	}
 
 	// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen

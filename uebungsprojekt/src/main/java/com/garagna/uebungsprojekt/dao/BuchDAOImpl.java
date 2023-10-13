@@ -15,5 +15,4 @@ public class BuchDAOImpl
 		List<Buch> list = getSqlMapClientTemplate().queryForList("buch.selectAll");
 		return list;
 	}
-
 }
