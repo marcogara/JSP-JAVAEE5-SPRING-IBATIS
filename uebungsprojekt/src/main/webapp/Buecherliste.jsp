@@ -6,7 +6,7 @@
             <ui:html id="html1">
                 <ui:head id="head1" title="Buecherliste"><ui:link id="link1" url="/resources/stylesheet.css"/></ui:head>
 				<ui:body id="body1" style="background-color: grey;">
-					<ui:form id="form1">
+					<ui:form id="form">
 						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 						<h:outputLabel for="listboxTitel" value="ID" style="font-size: 24px; padding: 4px; text-align:left;"/>
 						<h:outputLabel for="listboxTitel" value="TITEL" style="font-size: 24px; padding: 4px 10px 30px; margin-right: 290px; text-align:center;"/>
@@ -27,7 +27,7 @@
 								<ui:button action="#{Buecherliste.buttonVerlag}" id="buttonVerlag" text="Verlage Infos" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;" />
 							</ui:panelGroup>
 
-							<ui:panelGroup style="left: 1050px; top: 490px; position: absolute; margin-top: 10px;">
+							<ui:panelGroup style="left: 1350px; top: 490px; position: absolute; margin-top: 10px;">
 								<ui:image id="imageBild" style="max-height: 80.0px; max-width: 80.0px;" url="/images/info-1459077_640.png" />
 							</ui:panelGroup>
 						</ui:panelLayout>

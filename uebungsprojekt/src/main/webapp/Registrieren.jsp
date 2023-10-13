@@ -6,7 +6,7 @@
             <ui:html id="html1">
                 <ui:head id="head1" title="Registrieren"></ui:head>
 				<ui:body id="body1" style="background-color: grey;">
-					<ui:form binding="#{Registrieren.form1}" id="form1" virtualFormsConfig="
+					<ui:form binding="#{Registrieren.form}" id="form" virtualFormsConfig="
 						home
 							|
 							| layoutPanelButtonsAuswahl:buttonHome,
@@ -47,3 +47,10 @@
 		</ui:page>
 	</f:view>
 </jsp:root>
+
+<!--virtualForm Info -->
+<!--Zeile 10. Home Section: Wenn die SchaltflächeHome gedrückt wird, kümmert sich die Seite dank dieses Codes nicht darum, ob die Felder ausgefüllt sind oder nicht -->
+<!-- Dient zur Rückkehr zur Startseite ohne Probleme -->
+<!-- Zeile 13. „Registrieren-Abschnitt“: dieser Abschnitt bezieht sich auf den Registrierungsprozess. -->
+<!-- Hier sind die Eingabefelder für die Benutzerregistrierung wie Name und Guthaben enthalten. -->
+<!-- Zeile 18. Löschen und Auswahl Section: Stellen Sie klar, dass es in diesem Abschnitt um das Löschen und Auswählen von Kundendaten geht -->

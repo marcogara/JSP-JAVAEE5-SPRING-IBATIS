@@ -8,16 +8,36 @@ import com.sun.rave.web.ui.component.TextField;
 
 public class Registrieren extends AbstractPageBean
 {
-	private Form form1 = new Form();
 
-	public Form getForm1()
+	private TransactionRegistrieren transactionRegistrieren;
+
+	public void setTransactionRegistrieren(TransactionRegistrieren transactionRegistrieren)
 	{
-		return this.form1;
+		this.transactionRegistrieren = transactionRegistrieren;
 	}
 
-	public void setForm1(Form f)
+	private Form form = new Form();
+
+	public Form getForm()
 	{
-		this.form1 = f;
+		return this.form;
+	}
+
+	public void setForm(Form f)
+	{
+		this.form = f;
+	}
+
+	private TextField textFieldBenutzernummer = new TextField();
+
+	public void setTextFieldBenutzernummer(TextField textFieldBenutzernummer)
+	{
+		this.textFieldBenutzernummer = textFieldBenutzernummer;
+	}
+
+	public TextField getTextFieldBenutzernummer()
+	{
+		return textFieldBenutzernummer;
 	}
 
 	private TextField textFieldBenutzernvorname = new TextField();
@@ -68,13 +88,6 @@ public class Registrieren extends AbstractPageBean
 		this.errorMessage = errorMessage;  //  Meldungen für User
 	}
 
-	private TransactionRegistrieren transactionRegistrieren;
-
-	public void setTransactionRegistrieren(TransactionRegistrieren transactionRegistrieren)
-	{
-		this.transactionRegistrieren = transactionRegistrieren;
-	}
-
 	private TextField textFieldKN = new TextField();
 
 	public TextField getTextFieldKN()
@@ -85,18 +98,6 @@ public class Registrieren extends AbstractPageBean
 	public void setTextFieldKN(TextField textFieldKN)
 	{
 		this.textFieldKN = textFieldKN;
-	}
-
-	private TextField textFieldBenutzernummer = new TextField();
-
-	public void setTextFieldBenutzernummer(TextField textFieldBenutzernummer)
-	{
-		this.textFieldBenutzernummer = textFieldBenutzernummer;
-	}
-
-	public TextField getTextFieldBenutzernummer()
-	{
-		return textFieldBenutzernummer;
 	}
 
 	@Override
@@ -128,11 +129,11 @@ public class Registrieren extends AbstractPageBean
 		// only after the speichern function call kunde has an id that can be asked because the sql query return the id (nummer) from the DB the query is in kunde.xml
 		int id = kunde.getNummer();
 		this.textFieldBenutzernummer.setText(id);
-		this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
+		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
 
 		// Redirect to a success page or perform other actions as needed
 		// refresh page and display kundendaten registration with kundennummer and confirmation. after that kunde can go to Ausleihen page for instance....
-		this.errorMessage = "registration_success";   // ??
+		this.errorMessage = "Registrierung erfolgreich. Sie sind Kundennummer: " + id;   // ??
 
 	}
 
@@ -144,13 +145,13 @@ public class Registrieren extends AbstractPageBean
 		// transaction Aufruf
 		this.transactionRegistrieren.loeschen(kundennummer);
 
-		this.form1.discardSubmittedValues("registrieren");
+		this.form.discardSubmittedValues("registrieren");
 
 		this.textFieldBenutzernvorname.setText(null);
 		this.textFieldBenutzernnachname.setText(null);
 		this.textFieldGuthaben.setText(null);
 		this.textFieldBenutzernummer.setText(null);
-		this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
+		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
 		this.textFieldKN.setText(null);
 
 		this.errorMessage = "kunde gelöscht";   // ??
@@ -162,31 +163,41 @@ public class Registrieren extends AbstractPageBean
 		Kunde kunde = this.transactionRegistrieren.selectedKundeLaden(kundennummer);
 
 		if (kunde != null)
-		// Check if the kunde object is not null
-		// The kunde exists, set its values
+		// Prüfen, ob das Kundenobjekt nicht null ist
+		//Wenn Der Kunde existiert, setze seine Werte
 		{
-			this.form1.discardSubmittedValues("registrieren");
-
-			this.textFieldBenutzernvorname.setText(kunde.getVorname());
-			this.textFieldBenutzernnachname.setText(kunde.getName());
-			this.textFieldGuthaben.setText(kunde.getGuthaben());
-			this.textFieldBenutzernummer.setText(kundennummer);
-			this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
-			this.textFieldKN.setText(null);
-			this.errorMessage = "kundennummer: " + kunde.getNummer() + " selektiert";   // ??
+			fillCustomerData(kunde);
+			this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
 		}
 		else
 		{
-			this.form1.discardSubmittedValues("registrieren");
-
-			this.textFieldBenutzernvorname.setText(null);
-			this.textFieldBenutzernnachname.setText(null);
-			this.textFieldGuthaben.setText(null);
-			this.textFieldBenutzernummer.setText(null);
-			this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
-			this.textFieldKN.setText(null);
-			this.errorMessage = "kundennummer: " + kundennummer + " nicht vorhanden";
+			clearAllFields();
+			this.errorMessage = "Kundennummer: " + kundennummer + " nicht vorhanden"; // Die Kundennummer existiert nicht
 		}
+	}
+
+	private void fillCustomerData(Kunde kunde)
+	{
+		this.form.discardSubmittedValues("registrieren");
+
+		this.textFieldBenutzernvorname.setText(kunde.getVorname());
+		this.textFieldBenutzernnachname.setText(kunde.getName());
+		this.textFieldGuthaben.setText(kunde.getGuthaben());
+		this.textFieldBenutzernummer.setText(kunde.getNummer());
+		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
+		this.textFieldKN.setText(null);
+	}
+
+	private void clearAllFields()
+	{
+		this.form.discardSubmittedValues("registrieren");
+
+		this.textFieldBenutzernvorname.setText(null);
+		this.textFieldBenutzernnachname.setText(null);
+		this.textFieldGuthaben.setText(null);
+		this.textFieldBenutzernummer.setText(null);
+		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
+		this.textFieldKN.setText(null);
 	}
 
 	public String buttonHome_action()
