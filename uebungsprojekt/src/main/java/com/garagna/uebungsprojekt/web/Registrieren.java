@@ -3,20 +3,33 @@ package com.garagna.uebungsprojekt.web;
 import com.garagna.uebungsprojekt.transaction.TransactionRegistrieren;
 import com.garagna.uebungsprojekt.types.Kunde;
 import com.sun.rave.web.ui.appbase.AbstractPageBean;
+import com.sun.rave.web.ui.component.Form;
 import com.sun.rave.web.ui.component.TextField;
 
 public class Registrieren extends AbstractPageBean
 {
-	private TextField textFieldBenutzernvoraname = new TextField();
+	private Form form1 = new Form();
 
-	public TextField getTextFieldBenutzernvoraname()
+	public Form getForm1()
 	{
-		return textFieldBenutzernvoraname;
+		return this.form1;
 	}
 
-	public void setTextFieldBenutzernvoraname(TextField tf)
+	public void setForm1(Form f)
 	{
-		this.textFieldBenutzernvoraname = tf;
+		this.form1 = f;
+	}
+
+	private TextField textFieldBenutzernvorname = new TextField();
+
+	public TextField getTextFieldBenutzernvorname()
+	{
+		return textFieldBenutzernvorname;
+	}
+
+	public void setTextFieldBenutzernvorname(TextField tf)
+	{
+		this.textFieldBenutzernvorname = tf;
 	}
 
 	private TextField textFieldBenutzernnachname = new TextField();
@@ -98,7 +111,7 @@ public class Registrieren extends AbstractPageBean
 	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?
 	{
 
-		String vorname = (String) this.textFieldBenutzernvoraname.getText();  // alles muss so gemacht werden
+		String vorname = (String) this.textFieldBenutzernvorname.getText();  // alles muss so gemacht werden
 		String name = (String) this.textFieldBenutzernnachname.getText();
 		Integer guthaben = (Integer) this.textFieldGuthaben.getText();
 
@@ -115,6 +128,7 @@ public class Registrieren extends AbstractPageBean
 		// only after the speichern function call kunde has an id that can be asked because the sql query return the id (nummer) from the DB the query is in kunde.xml
 		int id = kunde.getNummer();
 		this.textFieldBenutzernummer.setText(id);
+		this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
 
 		// Redirect to a success page or perform other actions as needed
 		// refresh page and display kundendaten registration with kundennummer and confirmation. after that kunde can go to Ausleihen page for instance....
@@ -130,18 +144,49 @@ public class Registrieren extends AbstractPageBean
 		// transaction Aufruf
 		this.transactionRegistrieren.loeschen(kundennummer);
 
-		this.errorMessage = "kunde gelöscht";   // ??
+		this.form1.discardSubmittedValues("registrieren");
 
+		this.textFieldBenutzernvorname.setText(null);
+		this.textFieldBenutzernnachname.setText(null);
+		this.textFieldGuthaben.setText(null);
+		this.textFieldBenutzernummer.setText(null);
+		this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
+		this.textFieldKN.setText(null);
+
+		this.errorMessage = "kunde gelöscht";   // ??
 	}
 
-	public void buttonKundeSelect_action() // ist String als Rückgabewert korrekt?           // not complete
+	public void buttonKundeSelect_action()
 	{
 		Integer kundennummer = (Integer) this.textFieldKN.getText();
+		Kunde kunde = this.transactionRegistrieren.selectedKundeLaden(kundennummer);
 
-		// transaction Aufruf
-		// this.transactionRegistrieren.loeschen(kundennummer);
-		this.errorMessage = "kunde gelöscht";   // ??
+		if (kunde != null)
+		// Check if the kunde object is not null
+		// The kunde exists, set its values
+		{
+			this.form1.discardSubmittedValues("registrieren");
 
+			this.textFieldBenutzernvorname.setText(kunde.getVorname());
+			this.textFieldBenutzernnachname.setText(kunde.getName());
+			this.textFieldGuthaben.setText(kunde.getGuthaben());
+			this.textFieldBenutzernummer.setText(kundennummer);
+			this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
+			this.textFieldKN.setText(null);
+			this.errorMessage = "kundennummer: " + kunde.getNummer() + " selektiert";   // ??
+		}
+		else
+		{
+			this.form1.discardSubmittedValues("registrieren");
+
+			this.textFieldBenutzernvorname.setText(null);
+			this.textFieldBenutzernnachname.setText(null);
+			this.textFieldGuthaben.setText(null);
+			this.textFieldBenutzernummer.setText(null);
+			this.form1.discardSubmittedValue(this.textFieldBenutzernummer);
+			this.textFieldKN.setText(null);
+			this.errorMessage = "kundennummer: " + kundennummer + " nicht vorhanden";
+		}
 	}
 
 	public String buttonHome_action()

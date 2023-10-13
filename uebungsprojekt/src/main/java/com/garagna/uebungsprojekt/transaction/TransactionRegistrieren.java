@@ -1,6 +1,7 @@
 package com.garagna.uebungsprojekt.transaction;
 
 import com.garagna.uebungsprojekt.dao.KundeDAO;
+
 import com.garagna.uebungsprojekt.types.Kunde;
 
 public class TransactionRegistrieren
@@ -40,4 +41,9 @@ public class TransactionRegistrieren
 		return id;
 	}
 
+	public Kunde selectedKundeLaden(Integer id)
+	{
+		Kunde kunde = this.kundeDAO.select(id);
+		return kunde;
+	}
 }

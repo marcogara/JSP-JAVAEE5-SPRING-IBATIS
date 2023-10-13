@@ -28,10 +28,11 @@ public class KundeDAOImpl
 		return nummer;
 	}
 
-	/**
-	 * @Override public Kunde select(Integer intgr) {
-	 *
-	 * }
-	 *
-	 */
+	@Override
+	public Kunde select(Integer id)
+	{
+		Kunde kunde = (Kunde) getSqlMapClientTemplate().queryForObject(
+			"kunde.select", id);
+		return kunde;
+	}
 }
