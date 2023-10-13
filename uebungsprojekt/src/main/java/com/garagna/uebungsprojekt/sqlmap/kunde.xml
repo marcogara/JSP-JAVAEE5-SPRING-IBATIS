@@ -2,23 +2,19 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="kunde">
 
-	<resultMap id="resultKunde_id" class="Kunde" >
-		<result column="next_id" property="nummer" jdbcType="INTEGER" />
-	</resultMap>
-
 	<insert id="insert" parameterClass="Kunde" >
 		<selectKey keyProperty="nummer" resultClass="int" type="pre">
 			INSERT INTO kunde
 			(
-			name,
-			vorname,
-			guthaben
+				name,
+				vorname,
+				guthaben
 			)
 			VALUES
 			(
-			#name:VARCHAR#,
-			#vorname:VARCHAR#,
-			#guthaben:INTEGER#
+				#name:VARCHAR#,
+				#vorname:VARCHAR#,
+				#guthaben:INTEGER#
 			)
 			RETURNING nummer
 		</selectKey>
@@ -29,7 +25,7 @@
 		WHERE nummer = #value#
 	</delete>
 
-	<select id="getNextAvailableId" resultMap="resultKunde_id" >
+	<select id="getNextAvailableId" resultClass="int">
 		SELECT max(nummer) + 1 AS next_id
 		FROM kunde
 	</select>

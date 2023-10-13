@@ -21,7 +21,7 @@ public class KundeDAOImpl
 	}
 
 	@Override
-	public Integer getNextAvailableId() // ??????????
+	public Integer getNextAvailableId()
 
 	{
 		Integer nummer = (Integer) getSqlMapClientTemplate().queryForObject("kunde.getNextAvailableId");

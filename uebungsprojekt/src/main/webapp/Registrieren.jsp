@@ -10,8 +10,8 @@
 						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelLogin">
-								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField id="textFieldBenutzernummer" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." style="font-size: 30px; margin-top:25px;"/>
+								<ui:textField binding="#{Registrieren.textFieldBenutzernummer}" id="textFieldBenutzernummer" disabled="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 								<ui:label for="textFieldBenutzernvoraname" id="labelBenutzervorname" text="Vorname" requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
 								<ui:textField binding="#{Registrieren.textFieldBenutzernvoraname}" id="textFieldBenutzernvoraname" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 								<ui:label for="textFieldBenutzernnachname" id="labelBenutzernnachname" text="Nachname" requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>

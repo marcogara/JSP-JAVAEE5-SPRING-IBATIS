@@ -20,10 +20,18 @@
 								<ui:listbox binding="#{Buecherliste.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 1600px; font-family: monospace; font-size: 14px"  styleClass="black-listbox"/>
 							</h:panelGrid>
 						</ui:panelLayout>
+
 						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: center; margin-bottom: 50px;">
-							<ui:button action="#{Buecherliste.buttonHome_action}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;  margin-bottom: 50px;"/>
-							<ui:button action="#{Buecherliste.buttonVerlag}" id="buttonVerlag" text="Verlag zeigen" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;  margin-bottom: 50px;"/>
+							<ui:panelGroup style="margin-top: 10px;">
+								<ui:button action="#{Buecherliste.buttonHome_action}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;" />
+								<ui:button action="#{Buecherliste.buttonVerlag}" id="buttonVerlag" text="Verlage Infos" style="font-size: 18px; padding: 10px 20px 30px 30px; margin-right: 10px;" />
+							</ui:panelGroup>
+
+							<ui:panelGroup style="left: 1050px; top: 490px; position: absolute; margin-top: 10px;">
+								<ui:image id="imageBild" style="max-height: 80.0px; max-width: 80.0px;" url="/images/info-1459077_640.png" />
+							</ui:panelGroup>
 						</ui:panelLayout>
+
 						<h:outputLabel for="listboxTitel1" value="ID" style="font-size: 24px; padding: 40px 10px 40px ;margin-right: 10px; text-align:left;"/>
 						<h:outputLabel for="listboxTitel1" value="VERLAG" style="font-size: 24px; padding: 10px; margin-right: 342px; text-align:center;"/>
 						<h:outputLabel for="listboxTitel1" value="SITZ" style="font-size: 24px; padding: 4px 10px 30px; margin-right: 100px; text-align:center;"/>

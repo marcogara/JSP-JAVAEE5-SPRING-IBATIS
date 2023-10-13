@@ -113,6 +113,10 @@ public class Registrieren extends AbstractPageBean
 
 		// Implement any validation logic here
 		// SQL mit Kundendaten abfragen und ID abrufen
+		int id = kunde.getNummer();
+
+		this.textFieldBenutzernummer.setText(id);
+
 		// Redirect to a success page or perform other actions as needed
 		// refresh page and display kundendaten registration with kundennummer and confirmation. after that kunde can go to Ausleihen page for instance....
 		this.errorMessage = "registration_success";   // ??
