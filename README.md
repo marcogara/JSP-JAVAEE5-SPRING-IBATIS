@@ -18,6 +18,10 @@ Not for Building from Scratch: It's important to note that while some components
 
 In summary, this project offers a structured learning environment and the opportunity to explore the intricacies of Spring, iBatis, Maven, JSP, and related frameworks within the context of a full-stack web application, complete with a PostgreSQL database. It's a valuable resource for anyone looking to expand their skills and knowledge in software development.
 
+Documentation for the database used, script, diagram, and more is at this stage in this repo. 
+
+## 🚀 [https://marcogara.github.io/](https://github.com/marcogara/WBS_60.1) 🚀
+
 For more Infos and contact visit: 
 
 ## 🚀 https://marcogara.github.io/ 🚀
