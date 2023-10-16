@@ -8,7 +8,6 @@ import com.sun.rave.web.ui.component.TextField;
 
 public class Registrieren extends AbstractPageBean
 {
-
 	private TransactionRegistrieren transactionRegistrieren;
 
 	public void setTransactionRegistrieren(TransactionRegistrieren transactionRegistrieren)
@@ -117,6 +116,9 @@ public class Registrieren extends AbstractPageBean
 
 	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?
 	{
+		//TODO: eventuell brauchen wir hier ein Validierung um den kunden daten name und nachname schön in datenbank sind weil
+		// ein >Problem kann sein dass, wenn ich drücke auf select und den kunden daten schön da sind auf den textenfelder es solle unmöglich sein auf Bestätigen zu Drücken mit eien datensatz schön in datenbank
+
 		String vorname = (String) this.textFieldBenutzernvorname.getText();  // alles muss so gemacht werden
 		String name = (String) this.textFieldBenutzernnachname.getText();
 		Integer guthaben = (Integer) this.textFieldGuthaben.getText();
@@ -131,7 +133,7 @@ public class Registrieren extends AbstractPageBean
 		this.transactionRegistrieren.speichern(kunde);
 
 		// Implement any validation logic here
-		// only after the speichern function call kunde has an id that can be asked because the sql query return the id (nummer) from the DB the query is in kunde.xml
+		// Erst nach dem Aufruf der Funktion „Speichern“ verfügt „Kunde“ über eine ID, die abgefragt werden kann, da die SQL-Abfrage die ID (Nummer) aus der Datenbank zurückgibt, in der sich die Abfrage in „Kunde.xml“ befindet
 		int id = kunde.getNummer();
 		this.textFieldBenutzernummer.setText(id);
 		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
@@ -145,14 +147,15 @@ public class Registrieren extends AbstractPageBean
 	{
 		Integer kundennummer = (Integer) this.textFieldKN.getText();
 
-		// if kundendaten stimmen und kundennumemr existiert dann kann gelöscht werden ?? sinnvoll ?
+		// TODO: if kundendaten stimmen und kundennumemr existiert dann kann gelöscht werden ?? sinnvoll ?
 		// transaction Aufruf
 		this.transactionRegistrieren.loeschen(kundennummer);
 
 		this.form.discardSubmittedValues("registrieren");
-		//TODO: Prüfung, ob der Kunde gelöscht werden kann, z.B. positiver oder Nullsaldo und kein Ausleihbuch offen.
-		clearAllFields();
+		//TODO: Überprüfen, ob der Kunde gelöscht werden kann, beispielsweise aufgrund eines positiven
+		// oder Nullsaldo und keiner offenen Ausleihbücher. Dies kann nach Implementierung der Verleihfunktion(Klassen und modellierung) getan werden.
 
+		alleFelderLoeschen();
 		this.errorMessage = "kunde gelöscht";
 	}
 
@@ -165,20 +168,20 @@ public class Registrieren extends AbstractPageBean
 		// Prüfen, ob das Kundenobjekt nicht null ist
 		//Wenn Der Kunde existiert, setze seine Werte
 		{
-			fillCustomerData(kunde);
+			this.form.discardSubmittedValues("registrieren");
+			kundendatenAusfüllen(kunde);
 			this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
 		}
 		else
 		{
-			clearAllFields();
+			this.form.discardSubmittedValues("registrieren");
+			alleFelderLoeschen();
 			this.errorMessage = "Kundennummer: " + kundennummer + " nicht vorhanden"; // Die Kundennummer existiert nicht
 		}
 	}
 
-	private void fillCustomerData(Kunde kunde)
+	private void kundendatenAusfüllen(Kunde kunde)
 	{
-		this.form.discardSubmittedValues("registrieren");
-
 		this.textFieldBenutzernvorname.setText(kunde.getVorname());
 		this.textFieldBenutzernnachname.setText(kunde.getName());
 		this.textFieldGuthaben.setText(kunde.getGuthaben());
@@ -187,10 +190,8 @@ public class Registrieren extends AbstractPageBean
 		this.textFieldKN.setText(null);
 	}
 
-	private void clearAllFields()
+	private void alleFelderLoeschen()
 	{
-		this.form.discardSubmittedValues("registrieren");
-
 		this.textFieldBenutzernvorname.setText(null);
 		this.textFieldBenutzernnachname.setText(null);
 		this.textFieldGuthaben.setText(null);
@@ -198,33 +199,33 @@ public class Registrieren extends AbstractPageBean
 		this.form.discardSubmittedValue(this.textFieldBenutzernummer);
 		this.textFieldKN.setText(null);
 	}
-
-	// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
-	/**
-	 * step to add a new entity in the app to do all the other operation (to save in the database)
-	 *
-	 * Transaction class
-	 *
-	 * transaction.xml needs to have the correct bean (Trasnsaction class)
-	 *
-	 * DAO interface
-	 *
-	 * DAOImpl class
-	 *
-	 * add bean in ibatisdao.xml
-	 *
-	 * faces-config file has to be present
-	 *
-	 * sqlmap-config.xml
-	 *
-	 * needs to have the entity as exemple below show
-	 *
-	 * <typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>
-	 * <typeAlias alias="Kunde" type="com.garagna.uebungsprojekt.types.Kunde"/>
-	 *
-	 * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/buch.xml"/>
-	 * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/kunde.xml"/>
-	 *
-	 *
-	 */
 }
+
+// void wenn ich bleibe auf der Seite und String wenn ich navigieren auf neuer Seite -->  navigation.xml von syAbo anpassen
+/**
+ * step to add a new entity in the app to do all the other operation (to save in the database)
+ *
+ * Transaction class
+ *
+ * transaction.xml needs to have the correct bean (Trasnsaction class)
+ *
+ * DAO interface
+ *
+ * DAOImpl class
+ *
+ * add bean in ibatisdao.xml
+ *
+ * faces-config file has to be present
+ *
+ * sqlmap-config.xml
+ *
+ * needs to have the entity as exemple below show
+ *
+ * <typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>
+ * <typeAlias alias="Kunde" type="com.garagna.uebungsprojekt.types.Kunde"/>
+ *
+ * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/buch.xml"/>
+ * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/kunde.xml"/>
+ *
+ *
+ */
