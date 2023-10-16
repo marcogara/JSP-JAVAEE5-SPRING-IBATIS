@@ -75,7 +75,7 @@ public class Registrieren extends AbstractPageBean
 		this.textFieldGuthaben = tf;
 	}
 
-	private String errorMessage = "test";           // Für Meldungen und oder testing
+	private String errorMessage = " ";           // Für Meldungen und oder testing
 
 	public String getErrorMessage()
 	{
