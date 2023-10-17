@@ -8,4 +8,6 @@
 		<property name="buchDAO" ref="buchDAO"/>
 		<property name="verlagDAO" ref="verlagDAO"/>
 	</bean>
+
+
 </beans>

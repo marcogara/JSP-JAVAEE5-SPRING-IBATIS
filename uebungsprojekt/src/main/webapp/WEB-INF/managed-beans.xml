@@ -30,6 +30,10 @@
 		<managed-bean-name>BuchAusleihen</managed-bean-name>
 		<managed-bean-class>com.garagna.uebungsprojekt.web.BuchAusleihen</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>transactionBuecherliste</property-name>
+			<value>#{transactionBuecherliste}</value>
+		</managed-property>
 	</managed-bean>
 
 </faces-config>
