@@ -19,7 +19,7 @@ public class Welcome extends AbstractPageBean      // https://docs.oracle.com/cd
 
 	public String buttonBuecherliste_action()
 	{
-		return "go_buecherliste";   // navigation.xml von syAbo anpassen
+		return "go_buecherliste";   // navigation.xml anpassen
 	}
 
 	public String buttonAusleihen_action()
