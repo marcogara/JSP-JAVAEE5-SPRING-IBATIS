@@ -4,22 +4,28 @@
     <f:view>
 		<ui:page id="page1">
             <ui:html id="html1">
-                <ui:head id="head1" title="Registrieren"></ui:head>
+                <ui:head id="head1" title="Ausleihen"><ui:link id="link1" url="/resources/stylesheet.css"/></ui:head>
 				<ui:body id="body1" style="background-color: grey;">
 					<ui:form binding="#{Registrieren.form}" id="form" virtualFormsConfig="
 						home
 							|
 							| layoutPanelButtonsAuswahl:buttonHome,
-						registrieren
-							| layoutPanelInput:gridPanelLogin:textFieldBenutzernvorname
-							layoutPanelInput:gridPanelLogin:textFieldBenutzernnachname
-							layoutPanelInput:gridPanelLogin:textFieldGuthaben
-							| layoutPanelButtonsAuswahl:buttonBestaetigung,
-						loechenSelect
-							| layoutPanelButtonsAuswahl:textFieldKN
-							| layoutPanelButtonsAuswahl:buttonKundenloeschen
-							layoutPanelButtonsAuswahl:buttonKundeSelect,">
+						ausleihen
+							| layoutPanelInput:gridPanelKundendaten:labelBenutzernummer
+							layoutPanelList:gridPanelList:listboxTitel
+							layoutPanelList:gridPanelList:selectBuch
+							| layoutPanelButtonsAuswahl:buttonBestaetigung,">
+
 						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
+						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
+							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelKundendaten">
+
+								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
+								<ui:textField  id="textFieldBenutzernummer" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+
+							</h:panelGrid>
+
+						</ui:panelLayout>
 
 						<h:outputLabel for="listboxTitel" value="ID" style="font-size: 24px; padding: 4px; text-align:left;"/>
 						<h:outputLabel for="listboxTitel" value="TITEL" style="font-size: 24px; padding: 4px 10px 30px; margin-right: 290px; text-align:center;"/>
@@ -32,20 +38,15 @@
 						<ui:panelLayout id="layoutPanelList" panelLayout="flow" style="text-align: center; margin-bottom: 50px;">
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="5" id="gridPanelList">
 								<ui:listbox binding="#{BuchAusleihen.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" rows="20" style="width: 1600px; font-family: monospace; font-size: 14px"  styleClass="black-listbox"/>
-							</h:panelGrid>
-						</ui:panelLayout>
+								<ui:button action="#{BuchAusleihen.onItemSelect}" id="selectBuch" text="select Item" style="font-size: 18px;" />
 
-						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
-							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelKundendaten">
-
-								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField  id="textFieldBenutzernummer" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-					
 							</h:panelGrid>
 
 						</ui:panelLayout>
+
 						<ui:panelLayout id="layoutPanelButtonsAuswahl" panelLayout="flow" style="text-align: left; margin-bottom: 50px; margin-left: 50px;">
 							<ui:button action="#{Registrieren.buttonHome_action}" id="buttonHome" text="Back Home" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 30px;"/>
+
 							<ui:button action="" id="buttonBestaetigung" text="Bestätigen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 30px;"/>
 						</ui:panelLayout>
 

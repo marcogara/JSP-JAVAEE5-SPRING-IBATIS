@@ -34,7 +34,14 @@
 			<property-name>transactionBuecherliste</property-name>
 			<value>#{transactionBuecherliste}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>transactionAusleihen</property-name>
+			<value>#{transactionAusleihen}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>transactionRegistrieren</property-name>
+			<value>#{transactionRegistrieren}</value>
+		</managed-property>
 	</managed-bean>
-
 </faces-config>
 
