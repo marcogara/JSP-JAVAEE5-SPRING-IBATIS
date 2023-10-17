@@ -6,6 +6,11 @@ import java.util.Map;
 
 import java.util.Calendar;
 import java.sql.Date;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.faces.event.ValueChangeEvent;
 
 import com.garagna.uebungsprojekt.business.TextUtils;
 import com.garagna.uebungsprojekt.transaction.TransactionAusleihen;
@@ -25,26 +30,9 @@ public class BuchAusleihen extends AbstractPageBean
 {
 	private final String SP = "\u00A0";
 
+	private int storedBookId = -1;
+
 	private TransactionAusleihen transactionAusleihen;
-
-	private Object selectedBuch;
-
-	public Object getSelectedBuch()
-	{
-		return selectedBuch;
-	}
-
-	public void setSelectedItem(Object selectedItem)
-	{
-		this.selectedBuch = selectedItem;
-	}
-
-	private Object selectedItem;
-
-	public void setSelectedBuch(Object selectedBuch)
-	{
-		this.selectedBuch = selectedBuch;
-	}
 
 	public void setTransactionAusleihen(TransactionAusleihen transactionAusleihen)
 	{
@@ -144,11 +132,22 @@ public class BuchAusleihen extends AbstractPageBean
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
 	}
 
-	public void onItemSelect()
+	public void listboxBuecherliste_processValueChange(ValueChangeEvent event)
 	{
-		// Access the selected item and update the selectedBuch property
-		this.selectedBuch = this.selectedItem;
-		// Perform further actions with the selected item
+		Integer identifikator = (Integer) event.getNewValue(); // Assuming it's an Integer
+		String identifikatorAsString = identifikator.toString();
+
+		// Use regular expression to match and extract the first number (the ID)
+		Pattern pattern = Pattern.compile("\\d+"); // Match one or more digits
+		Matcher matcher = pattern.matcher(identifikatorAsString);
+
+		if (matcher.find())
+		{
+			String bookId = matcher.group();
+			// Now, bookId contains the extracted book ID as a string
+			int bookIdAsInt = Integer.parseInt(bookId);
+			storedBookId = bookIdAsInt;
+		}
 	}
 
 	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?
@@ -156,8 +155,6 @@ public class BuchAusleihen extends AbstractPageBean
 		Ausleihe ausleihe = new Ausleihe();
 		//TODO: eventuell brauchen wir hier ein Validierung um den kunden daten name und nachname schön in datenbank sind weil
 		// ein >Problem kann sein dass, wenn ich drücke auf select und den kunden daten schön da sind auf den textenfelder es solle unmöglich sein auf Bestätigen zu Drücken mit eien datensatz schön in datenbank
-
-		Buch selectedBuch = (Buch) this.selectedBuch;
 
 		Integer kundennummer = (Integer) this.textFieldBenutzernummer.getText();
 
@@ -168,19 +165,19 @@ public class BuchAusleihen extends AbstractPageBean
 		// Prüfen, ob das Kundenobjekt nicht null ist
 		//Wenn Der Kunde existiert, weitergehen mit Ausleihen transaction
 		{
-			this.form.discardSubmittedValues("ausleihen");
+			// this.form.discardSubmittedValues("ausleihen");
 
-			ausleihe.setKunde(kunde);
-			ausleihe.setBuch(selectedBuch);
+			ausleihe.setBuch_id(storedBookId); // Assuming Buch has an 'id' property
+			ausleihe.setKunde_nummer(kunde.getNummer()); // Assuming Kunde has a 'nummer' property
 
-			java.sql.Date sqlDate = new Date(System.currentTimeMillis());
-			ausleihe.setDate(sqlDate);
+			Date sqlDate = new Date(System.currentTimeMillis());
+			ausleihe.setDatum(sqlDate);
 
 			// this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
 		}
 		else
 		{
-			this.form.discardSubmittedValues("ausleihen");
+			// this.form.discardSubmittedValues("ausleihen");
 			this.textFieldBenutzernummer.setText(null);
 			this.form.discardSubmittedValue(this.textFieldBenutzernummer);
 			// discard auch Buch Auswahlt von listBox falls Buch nicht voranden ist ??

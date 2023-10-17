@@ -4,51 +4,53 @@ import java.sql.Date;
 
 public class Ausleihe
 {
-	private Integer id;
+	private Integer ausleihe_id;
 
-	private Buch buch;
+	private Integer buch_id; // Add this property
 
-	private Kunde kunde;
+	private Integer kunde_nummer; // Add this property
 
-	private Date date;
+	private Date datum;
 
-	public Integer getId()
+	public Integer getAusleihe_id()
 	{
-		return id;
+		return ausleihe_id;
 	}
 
-	public void setId(Integer id)
+	public void setAusleihe_id(Integer ausleihe_id)
 	{
-		this.id = id;
+		this.ausleihe_id = ausleihe_id;
 	}
 
-	public Buch getBuch()
+	// Getter and setter methods for buch_id and kunde_nummer
+	public Integer getBuch_id()
 	{
-		return buch;
+		return buch_id;
 	}
 
-	public void setBuch(Buch buch)
+	public void setBuch_id(Integer buch_id)
 	{
-		this.buch = buch;
+		this.buch_id = buch_id;
 	}
 
-	public Kunde getKunde()
+	public Integer getKunde_nummer()
 	{
-		return kunde;
+		return kunde_nummer;
 	}
 
-	public void setKunde(Kunde kunde)
+	public void setKunde_nummer(Integer kunde_nummer)
 	{
-		this.kunde = kunde;
+		this.kunde_nummer = kunde_nummer;
 	}
 
-	public Date getDate()
+	public Date getDatum()
 	{
-		return date;
+		return datum;
 	}
 
-	public void setDate(Date date)
+	public void setDatum(Date date)
 	{
-		this.date = date;
+		this.datum = date;
 	}
+	// ... (other getter and setter methods)
 }

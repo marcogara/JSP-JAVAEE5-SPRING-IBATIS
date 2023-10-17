@@ -12,8 +12,8 @@
 		)
 		VALUES
 		(
-			#buch_id:VARCHAR#,
-			#kunde_nummer:VARCHAR#,
+			#buch_id:INTERGER#,
+			#kunde_nummer:INTEGER#,
 			#datum:DATE#
 		)
 		RETURNING ausleihe_id

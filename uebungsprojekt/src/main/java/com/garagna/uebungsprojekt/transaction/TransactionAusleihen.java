@@ -14,7 +14,7 @@ public class TransactionAusleihen
 
 	public void speichern(Ausleihe ausleihe)
 	{
-		if (ausleihe.getId() == null)
+		if (ausleihe.getAusleihe_id() == null)
 		{
 			this.ausleiheDAO.insert(ausleihe);
 		}
