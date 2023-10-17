@@ -8,6 +8,8 @@
 		<property name="buchDAO" ref="buchDAO"/>
 		<property name="verlagDAO" ref="verlagDAO"/>
 	</bean>
-
-
+	<bean id="transactionAusleihen" class="com.garagna.uebungsprojekt.transaction.TransactionAusleihen">
+		<property name="buchDAO" ref="buchDAO"/>
+		<property name="ausleiheDAO" ref="verlagDAO"/>
+	</bean>
 </beans>
