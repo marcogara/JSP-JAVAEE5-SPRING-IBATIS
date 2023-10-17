@@ -5,13 +5,13 @@
 	<bean id="kundeDAO" class="com.garagna.uebungsprojekt.dao.KundeDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
-
 	<bean id="buchDAO" class="com.garagna.uebungsprojekt.dao.BuchDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
-
 	<bean id="verlagDAO" class="com.garagna.uebungsprojekt.dao.VerlagDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
-
+	<bean id="AusleiheDAO" class="com.garagna.uebungsprojekt.dao.AusleiheDAOImpl">
+		<property name="sqlMapClient" ref="sqlMapClient"/>
+	</bean>
 </beans>
