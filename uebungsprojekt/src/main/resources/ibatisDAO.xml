@@ -11,7 +11,7 @@
 	<bean id="verlagDAO" class="com.garagna.uebungsprojekt.dao.VerlagDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
-	<bean id="AusleiheDAO" class="com.garagna.uebungsprojekt.dao.AusleiheDAOImpl">
+	<bean id="ausleiheDAO" class="com.garagna.uebungsprojekt.dao.AusleiheDAOImpl">
 		<property name="sqlMapClient" ref="sqlMapClient"/>
 	</bean>
 </beans>

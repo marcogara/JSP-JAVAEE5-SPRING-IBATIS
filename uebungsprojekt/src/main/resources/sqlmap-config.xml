@@ -10,7 +10,7 @@
 	<typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>
 	<typeAlias alias="Kunde" type="com.garagna.uebungsprojekt.types.Kunde"/>
 	<typeAlias alias="Verlag" type="com.garagna.uebungsprojekt.types.Verlag"/>
-	<typeAlias alias="Verlag" type="com.garagna.uebungsprojekt.types.Ausleihe"/>
+	<typeAlias alias="Ausleihe" type="com.garagna.uebungsprojekt.types.Ausleihe"/>
 
 	<sqlMap resource="com/garagna/uebungsprojekt/sqlmap/buch.xml"/>
 	<sqlMap resource="com/garagna/uebungsprojekt/sqlmap/kunde.xml"/>
