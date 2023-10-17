@@ -1,14 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.garagna.uebungsprojekt.transaction;
 
-/**
- *
- * @author vladimir
- */
+import com.garagna.uebungsprojekt.dao.AusleiheDAO;
+
 public class TransactionAusleihen
 {
+	private AusleiheDAO ausleiheDAO;
 
+	public void setAusleiheDAO(AusleiheDAO ausleiheDAO)
+	{
+		this.ausleiheDAO = ausleiheDAO;
+	}
 }
