@@ -38,14 +38,9 @@
 						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelKundendaten">
 
-								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField  id="textFieldBenutzernummer" disabled="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-								<ui:label for="textFieldBenutzernvorname" id="labelBenutzervorname" text="Vorname" requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField  id="textFieldBenutzernvorname" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-								<ui:label for="textFieldBenutzernnachname" id="labelBenutzernnachname" text="Nachname" requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField  id="textFieldBenutzernnachname" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
-								<ui:label for="textFieldGuthaben" id="labelGuthaben" text="Guthaben" style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField  converter="javax.faces.Integer" id="textFieldGuthaben" disabled="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
+								<ui:textField  id="textFieldBenutzernummer" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+					
 							</h:panelGrid>
 
 						</ui:panelLayout>
@@ -54,7 +49,7 @@
 							<ui:button action="" id="buttonBestaetigung" text="Bestätigen" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-right: 30px;"/>
 						</ui:panelLayout>
 
-						<h:outputText value="#{Registrieren.errorMessage}" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-top: 50px; margin-right: 120px;"/>
+							<h:outputText value="#{BuchAusleihen.errorMessage}" style="font-size: 18px; padding: 10px 20px 30px 10px; margin-top: 50px; margin-right: 120px;"/>
 					</ui:form>
 				</ui:body>
 			</ui:html>
