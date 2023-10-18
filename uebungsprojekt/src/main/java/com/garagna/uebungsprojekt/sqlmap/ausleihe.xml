@@ -20,10 +20,12 @@
 		</selectKey>
 	</insert>
 
-    <select id="checkIfBuchIsAusgeliehen" parameterClass="java.lang.Integer" resultClass="java.lang.Integer">
+    <select id="buchAusgeliehen" parameterClass="int" resultClass="boolean">
+		SELECT EXISTS
+		(
             SELECT 1
             FROM ausleihe
             WHERE ausleihe.buch_id = #value#
+		)
     </select>
-
 </sqlMap>

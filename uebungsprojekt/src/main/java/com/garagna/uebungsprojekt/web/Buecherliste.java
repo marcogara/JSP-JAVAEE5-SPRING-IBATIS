@@ -93,55 +93,23 @@ public class Buecherliste extends AbstractPageBean
 
 		for (Buch buch : buchMap.values())
 		{
-			int idI = buch.getId(); // Assuming buch.getId() returns an int
-			String idAsString = String.valueOf(idI);
+			String id = TextUtils.rpad(String.valueOf(buch.getId()), 5, sp);
+			String titel = TextUtils.rpad(buch.getTitel(), 49, sp);
+			String autor = TextUtils.rpad(buch.getAutor(), 37, sp);
+			String genre = TextUtils.rpad(buch.getGenre(), 17, sp);
+			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 11, sp);
+			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 59, sp);
+			String isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
-			String id = TextUtils.rpad(idAsString, 6, sp);
-			String titel = TextUtils.rpad(buch.getTitel(), 50, sp);
-			String autor = TextUtils.rpad(buch.getAutor(), 38, sp);
-			String genre = TextUtils.rpad(buch.getGenre(), 18, sp);
-			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 12, sp);
-			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 60, sp);
-			String isbn;
-			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
-
-			String anzeige = id + titel + autor + genre + year + velagName + isbn;
+			String anzeige = id + sp + titel + sp + autor + sp + genre + sp + year + sp + velagName + sp + isbn;
 
 			items.add(new Option(buch.getId(), anzeige));
 		}
 		this.listboxBuecher.setItems(items);
 	}
 
-	public List<Option> buchOptions()
-	{
-		List<Option> items = new LinkedList<Option>();
-		Map<Integer, Buch> buchMap = this.transactionBuecherliste.buecherlisteLaden();
-		String sp = this.SP;
-
-		for (Buch buch : buchMap.values())
-		{
-			int idI = buch.getId(); // Assuming buch.getId() returns an int
-			String idAsString = String.valueOf(idI);
-
-			String id = TextUtils.rpad(idAsString, 9, sp);
-			String titel = TextUtils.rpad(buch.getTitel(), 33, sp);
-			String autor = TextUtils.rpad(buch.getAutor(), 28, sp);
-			String genre = TextUtils.rpad(buch.getGenre(), 20, sp);
-			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 8, sp);
-			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 40, sp);
-			String isbn;
-			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
-
-			String anzeige = id + titel + autor + genre + year + velagName + isbn;
-
-			items.add(new Option(buch.getId(), anzeige));
-		}
-		return items;
-	}
-
 	public void verlag_action()
 	{
-
 		List<Verlag> list = this.transactionBuecherliste.verlagLaden();
 
 		List<Option> items = new LinkedList<Option>();
@@ -149,23 +117,17 @@ public class Buecherliste extends AbstractPageBean
 
 		for (Verlag verlag : list)
 		{
-			int idI = verlag.getId(); // Assuming buch.getId() returns an int String idAsString = String.valueOf(idI);
-			String idAsString = String.valueOf(idI);
+			String id = TextUtils.rpad(String.valueOf(verlag.getId()), 8, sp);
+			String name = TextUtils.rpad(verlag.getName(), 59, sp);
+			String sitz = TextUtils.rpad(verlag.getSitz(), 27, sp);
+			String year = TextUtils.rpad(String.valueOf(verlag.getGruendungsjahr()), 10, sp);
 
-			String id = TextUtils.rpad(idAsString, 9, sp);
-			String name = TextUtils.rpad(verlag.getName(), 60, sp);
-			String sitz = TextUtils.rpad(verlag.getSitz(), 28, sp);
-			int jahr = verlag.getGruendungsjahr(); // Assuming buch.getId() returns an int String jahrAsString = String.valueOf(jahr);
-			String jahrAsString = String.valueOf(jahr);
-			String year = TextUtils.rpad(jahrAsString, 10, sp);
-
-			String anzeige = id + name + sitz + year;
+			String anzeige = id + sp + name + sp + sitz + sp + year;
 
 			items.add(new Option(verlag.getId(), anzeige));
 		}
 		this.listboxVerlag.setItems(items);
 	}
-
 }
 
 /**

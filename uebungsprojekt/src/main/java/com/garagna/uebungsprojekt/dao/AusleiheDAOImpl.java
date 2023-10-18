@@ -13,17 +13,9 @@ public class AusleiheDAOImpl
 	}
 
 	@Override
-	public int pruefeBuch(Integer id)
+	public boolean buchAusgeliehen(Integer buch_id)
 	{
-		Integer result = (Integer) getSqlMapClientTemplate().queryForObject("ausleihe.checkIfBuchIsAusgeliehen", id);
-
-		if (result != null)
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
+		boolean result = (Boolean) getSqlMapClientTemplate().queryForObject("ausleihe.buchAusgeliehen", buch_id);
+		return result;
 	}
 }

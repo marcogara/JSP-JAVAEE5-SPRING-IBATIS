@@ -6,5 +6,5 @@ public interface AusleiheDAO
 {
 	void insert(Ausleihe ausleihe);
 
-	public int pruefeBuch(Integer id);
+	public boolean buchAusgeliehen(Integer buch_id);
 }

@@ -4,13 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import java.util.Calendar;
 import java.sql.Date;
-import java.util.TreeMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.faces.event.ValueChangeEvent;
 
 import com.garagna.uebungsprojekt.business.TextUtils;
 import com.garagna.uebungsprojekt.transaction.TransactionAusleihen;
@@ -30,7 +24,7 @@ public class BuchAusleihen extends AbstractPageBean
 {
 	private final String SP = "\u00A0";
 
-	private TransactionAusleihen transactionAusleihen;
+	private TransactionAusleihen transactionAusleihen;			// das sollte die einzige Trasaction verantwortlich für alle in diesen Klassen
 
 	public void setTransactionAusleihen(TransactionAusleihen transactionAusleihen)
 	{
@@ -87,29 +81,6 @@ public class BuchAusleihen extends AbstractPageBean
 		this.form = f;
 	}
 
-	/**
-	 *
-	 *
-	 * private TextField textFieldBenutzernvorname = new TextField();
-	 *
-	 * public TextField getTextFieldBenutzernvorname() { return textFieldBenutzernvorname; }
-	 *
-	 * public void setTextFieldBenutzernvorname(TextField tf) { this.textFieldBenutzernvorname = tf; }
-	 *
-	 * private TextField textFieldBenutzernnachname = new TextField();
-	 *
-	 * public TextField getTextFieldBenutzernnachname() { return textFieldBenutzernnachname; }
-	 *
-	 * public void setTextFieldBenutzernnachname(TextField tf) { this.textFieldBenutzernnachname = tf; }
-	 *
-	 * private TextField textFieldGuthaben = new TextField();
-	 *
-	 * public TextField getTextFieldGuthaben() { return textFieldGuthaben; }
-	 *
-	 * public void setTextFieldGuthaben(TextField tf) { this.textFieldGuthaben = tf; }
-	 *
-	 * *
-	 */
 	private String errorMessage = " ";           // Für Meldungen und oder testing
 
 	public String getErrorMessage()
@@ -133,48 +104,37 @@ public class BuchAusleihen extends AbstractPageBean
 	public void buttonBestaetigung_action()
 	{
 		Ausleihe ausleihe = new Ausleihe();
-		//TODO: eventuell brauchen wir hier ein Validierung um den kunden daten name und nachname schön in datenbank sind weil
-		// ein >Problem kann sein dass, wenn ich drücke auf select und den kunden daten schön da sind auf den textenfelder es solle unmöglich sein auf Bestätigen zu Drücken mit eien datensatz schön in datenbank
 
 		Integer kundennummer = (Integer) this.textFieldBenutzernummer.getText();
 		Integer buchId = (Integer) this.listboxBuecher.getSelected();
 
-		// if ID is in database
 		Kunde kunde = this.transactionRegistrieren.selectedKundeLaden(kundennummer);
 		Buch buch = this.transactionBuecherliste.buecherlisteLaden().get(buchId);
-		Integer buchTest = this.transactionAusleihen.pruefeBuchSchonAusgeliehen(buchId);
+		boolean buchAusgelihen = this.transactionAusleihen.pruefeBuchSchonAusgeliehen(buchId); // Prüft ob buchId ist ins Datenbank (tabelle ausleihe)
 
-		if (kunde != null) // und Buch verfügbar ist zb.
-		// Prüfen, ob das Kundenobjekt nicht null ist
-		//Wenn Der Kunde existiert, weitergehen mit Ausleihen transaction
-		{
-
-			if (buchTest == 0)
-			{
-				ausleihe.setBuch(buch);
-				ausleihe.setKunde(kunde);
-
-				Date sqlDate = new Date(System.currentTimeMillis());
-				ausleihe.setDatum(sqlDate);
-
-				// this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
-				// transaction Aufruf
-				this.transactionAusleihen.speichern(ausleihe);
-
-				// Implement any validation logic here
-				this.errorMessage = "Ausleihe erfolgreich.";
-			}
-			else
-			{
-				this.errorMessage = "Buch mi Id: " + buchId + " nicht vorhanden!"; // Das Buch ist schon Ausgeliehen
-			}
-		}
-		else
+		if (kunde == null)
 		{
 			this.textFieldBenutzernummer.setText(null);
-			// discard auch Buch Auswahlt von listBox falls Buch nicht voranden ist ??
-			this.errorMessage = "Kundennummer: " + kundennummer + " nicht vorhanden!"; // Die Kundennummer existiert nicht
+			this.errorMessage = "Kundennummer: " + kundennummer + " nicht vorhanden!"; // Kundennummer existiert nicht
+			return;
 		}
+
+		if (buchAusgelihen) // falls Id ist ins Datenbank (tabelle ausleihe)
+		{
+			this.errorMessage = "Buch mit ID: " + buchId + " ist bereits ausgeliehen!";
+			return;
+		}
+
+		ausleihe.setBuch(buch);
+		ausleihe.setKunde(kunde);
+
+		Date sqlDate = new Date(System.currentTimeMillis());
+		ausleihe.setDatum(sqlDate);
+
+		// transaction Aufruf
+		this.transactionAusleihen.speichern(ausleihe);
+		this.errorMessage = "Ausleihe erfolgreich.";
+
 	}
 
 	public void buchlisteErzeugen()
@@ -185,27 +145,23 @@ public class BuchAusleihen extends AbstractPageBean
 
 		for (Buch buch : buchMap.values())
 		{
-			int idI = buch.getId(); // Assuming buch.getId() returns an int
-			String idAsString = String.valueOf(idI);
+			String id = TextUtils.rpad(String.valueOf(buch.getId()), 5, sp);
+			String titel = TextUtils.rpad(buch.getTitel(), 49, sp);
+			String autor = TextUtils.rpad(buch.getAutor(), 37, sp);
+			String genre = TextUtils.rpad(buch.getGenre(), 17, sp);
+			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 11, sp);
+			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 59, sp);
+			String isbn = TextUtils.rpad(buch.getIsbn(), 19, sp);
 
-			String id = TextUtils.rpad(idAsString, 6, sp);
-			String titel = TextUtils.rpad(buch.getTitel(), 50, sp);
-			String autor = TextUtils.rpad(buch.getAutor(), 38, sp);
-			String genre = TextUtils.rpad(buch.getGenre(), 18, sp);
-			String year = TextUtils.rpad(buch.getErscheinungsjahr(), 12, sp);
-			String velagName = TextUtils.rpad(buch.getVerlag().getName(), 60, sp);
-			String isbn;
-			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
-
-			Integer buchTest = this.transactionAusleihen.pruefeBuchSchonAusgeliehen(buch.getId());
+			boolean buchAusgelihen = this.transactionAusleihen.pruefeBuchSchonAusgeliehen(buch.getId()); // Prüft ob buchId ist ins Datenbank (tabelle ausleihe)
 			String buchFlag = "";
 			// if Buch in der tabelle ist flag hinzufügen sonst nicht
-			if (buchTest == 1)
+			if (buchAusgelihen)
 			{
 				buchFlag = "X";
 			}
 
-			String anzeige = id + titel + autor + genre + year + velagName + isbn + buchFlag;
+			String anzeige = id + sp + titel + sp + autor + sp + genre + sp + year + sp + velagName + sp + isbn + sp + buchFlag;
 
 			items.add(new Option(buch.getId(), anzeige));
 		}
@@ -217,5 +173,4 @@ public class BuchAusleihen extends AbstractPageBean
 		// Registrieren reg = (Registrieren) getBean("Registrieren");
 		return "go_welcome";
 	}
-
 }
