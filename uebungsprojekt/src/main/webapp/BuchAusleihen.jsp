@@ -10,18 +10,16 @@
 						home
 							|
 							| layoutPanelButtonsAuswahl:buttonHome,
-						ausleihen
-							| layoutPanelInput:gridPanelKundendaten:labelBenutzernummer
+						ausleihenBestaetigen
+							| layoutPanelInput:gridPanelKundendaten:textFieldBenutzernummer
 							layoutPanelList:gridPanelList:listboxTitel
-							layoutPanelList:gridPanelList:selectBuch
 							| layoutPanelButtonsAuswahl:buttonBestaetigung,">
-
 						<ui:label for="textFieldBrief" id="labelBrief" text=""/>
 						<ui:panelLayout id="layoutPanelInput" panelLayout="flow" style="text-align: center; margin-bottom: 100px;">
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="2" id="gridPanelKundendaten">
 
 								<ui:label for="textFieldBenutzernummer" id="labelBenutzernummer" text="Kunden-Nr." requiredIndicator="true" style="font-size: 30px; margin-top:25px;"/>
-								<ui:textField  id="textFieldBenutzernummer" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
+								<ui:textField binding="#{BuchAusleihen.textFieldBenutzernummer}" converter="javax.faces.Integer" id="textFieldBenutzernummer" required="true" style="font-size: 24px; padding: 10px 20px 30px 30px; margin-right: 10px;"/>
 
 							</h:panelGrid>
 
@@ -37,11 +35,8 @@
 
 						<ui:panelLayout id="layoutPanelList" panelLayout="flow" style="text-align: center; margin-bottom: 50px;">
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="5" id="gridPanelList">
-								<ui:listbox binding="#{BuchAusleihen.listboxBuecher}" converter="javax.faces.Integer"
-									id="listboxTitel" onChange="common_timeoutSubmitForm(this.form, 'layoutPanelList:gridPanelList:listboxTitel');"
-									rows="20" style="width: 1600px; font-family: monospace; font-size: 14px"  styleClass="black-listbox"
-									valueChangeListener="#{BuchAusleihen.listboxBuecherliste_processValueChange}"/>
-
+								<ui:listbox binding="#{BuchAusleihen.listboxBuecher}" converter="javax.faces.Integer" id="listboxTitel" required="true"
+									rows="20" style="width: 1600px; font-family: monospace; font-size: 14px"  styleClass="black-listbox"/>
 							</h:panelGrid>
 
 						</ui:panelLayout>

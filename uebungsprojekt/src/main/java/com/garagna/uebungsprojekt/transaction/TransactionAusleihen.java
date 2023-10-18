@@ -19,4 +19,10 @@ public class TransactionAusleihen
 			this.ausleiheDAO.insert(ausleihe);
 		}
 	}
+
+	public int pruefeBuchSchonAusgeliehen(Integer id)
+	{
+		Integer buchAusgeliehen = this.ausleiheDAO.pruefeBuch(id);
+		return buchAusgeliehen != null && buchAusgeliehen > 0 ? 1 : 0;      // 0 is not ausgeliehen, 1 is already ausgeliehen
+	}
 }

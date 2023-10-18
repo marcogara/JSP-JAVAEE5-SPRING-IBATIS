@@ -30,8 +30,6 @@ public class BuchAusleihen extends AbstractPageBean
 {
 	private final String SP = "\u00A0";
 
-	private int storedBookId = -1;
-
 	private TransactionAusleihen transactionAusleihen;
 
 	public void setTransactionAusleihen(TransactionAusleihen transactionAusleihen)
@@ -132,67 +130,41 @@ public class BuchAusleihen extends AbstractPageBean
 		// Für RadioButton Eventuell ->  if (! isPostBack()){...}
 	}
 
-	public void listboxBuecherliste_processValueChange(ValueChangeEvent event)
-	{
-		Integer identifikator = (Integer) event.getNewValue(); // Assuming it's an Integer
-		String identifikatorAsString = identifikator.toString();
-
-		// Use regular expression to match and extract the first number (the ID)
-		Pattern pattern = Pattern.compile("\\d+"); // Match one or more digits
-		Matcher matcher = pattern.matcher(identifikatorAsString);
-
-		if (matcher.find())
-		{
-			String bookId = matcher.group();
-			// Now, bookId contains the extracted book ID as a string
-			int bookIdAsInt = Integer.parseInt(bookId);
-			storedBookId = bookIdAsInt;
-		}
-	}
-
-	public void buttonBestaetigung_action() // ist String als Rückgabewert korrekt?
+	public void buttonBestaetigung_action()
 	{
 		Ausleihe ausleihe = new Ausleihe();
 		//TODO: eventuell brauchen wir hier ein Validierung um den kunden daten name und nachname schön in datenbank sind weil
 		// ein >Problem kann sein dass, wenn ich drücke auf select und den kunden daten schön da sind auf den textenfelder es solle unmöglich sein auf Bestätigen zu Drücken mit eien datensatz schön in datenbank
 
 		Integer kundennummer = (Integer) this.textFieldBenutzernummer.getText();
+		Integer buchId = (Integer) this.listboxBuecher.getSelected();
 
 		// if ID is in database
 		Kunde kunde = this.transactionRegistrieren.selectedKundeLaden(kundennummer);
+		Buch buch = this.transactionBuecherliste.buecherlisteLaden().get(buchId);
 
 		if (kunde != null) // und Buch verfügbar ist zb.
 		// Prüfen, ob das Kundenobjekt nicht null ist
 		//Wenn Der Kunde existiert, weitergehen mit Ausleihen transaction
 		{
-			// this.form.discardSubmittedValues("ausleihen");
-
-			ausleihe.setBuch_id(storedBookId); // Assuming Buch has an 'id' property
-			ausleihe.setKunde_nummer(kunde.getNummer()); // Assuming Kunde has a 'nummer' property
+			ausleihe.setBuch(buch);
+			ausleihe.setKunde(kunde);
 
 			Date sqlDate = new Date(System.currentTimeMillis());
 			ausleihe.setDatum(sqlDate);
 
 			// this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
-		}
-		else
-		{
-			// this.form.discardSubmittedValues("ausleihen");
-			this.textFieldBenutzernummer.setText(null);
-			this.form.discardSubmittedValue(this.textFieldBenutzernummer);
-			// discard auch Buch Auswahlt von listBox falls Buch nicht voranden ist ??
-			this.errorMessage = "Kundennummer: " + kundennummer + " nicht vorhanden"; // Die Kundennummer existiert nicht
-		}
-
-		if (ausleihe != null)
-		{
 			// transaction Aufruf
 			this.transactionAusleihen.speichern(ausleihe);
 
 			// Implement any validation logic here
-			this.form.discardSubmittedValue(this.textFieldBenutzernummer);
-
 			this.errorMessage = "Ausleihe erfolgreich.";
+		}
+		else
+		{
+			this.textFieldBenutzernummer.setText(null);
+			// discard auch Buch Auswahlt von listBox falls Buch nicht voranden ist ??
+			this.errorMessage = "Kundennummer: " + kundennummer + " nicht vorhanden!"; // Die Kundennummer existiert nicht
 		}
 	}
 

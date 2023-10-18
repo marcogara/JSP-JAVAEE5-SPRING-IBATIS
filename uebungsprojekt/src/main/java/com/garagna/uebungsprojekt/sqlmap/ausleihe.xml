@@ -4,19 +4,27 @@
 
 	<insert id="insert" parameterClass="Ausleihe" >
 		<selectKey keyProperty="ausleihe_id" resultClass="int" type="pre">
-		INSERT INTO ausleihe
-		(
-			buch_id,
-			kunde_nummer,
-			datum
-		)
-		VALUES
-		(
-			#buch_id:INTERGER#,
-			#kunde_nummer:INTEGER#,
-			#datum:DATE#
-		)
-		RETURNING ausleihe_id
+			INSERT INTO ausleihe
+			(
+				buch_id,
+				kunde_nummer,
+				datum
+			)
+			VALUES
+			(
+				#buch.id:INTERGER#,
+				#kunde.nummer:INTEGER#,
+				#datum:DATE#
+			)
+			RETURNING ausleihe_id
 		</selectKey>
 	</insert>
+
+    <select id="checkIfBuchIsAusgeliehen" parameterClass="java.lang.Integer" resultClass="java.lang.Integer">
+            SELECT 1
+            FROM ausleihe
+            WHERE ausleihe.buch_id = #value#
+    </select>
+
+
 </sqlMap>

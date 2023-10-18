@@ -11,4 +11,10 @@ public class AusleiheDAOImpl
 	{
 		getSqlMapClientTemplate().insert("ausleihe.insert", ausleihe);
 	}
+
+	@Override
+	public int pruefeBuch(Integer id)
+	{
+		return (int) getSqlMapClientTemplate().queryForObject("ausleihe.checkIfBuchIsAusgeliehen", id);
+	}
 }

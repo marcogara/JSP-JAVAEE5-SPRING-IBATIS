@@ -6,9 +6,9 @@ public class Ausleihe
 {
 	private Integer ausleihe_id;
 
-	private Integer buch_id; // Add this property
+	private Buch buch;
 
-	private Integer kunde_nummer; // Add this property
+	private Kunde kunde;
 
 	private Date datum;
 
@@ -22,25 +22,24 @@ public class Ausleihe
 		this.ausleihe_id = ausleihe_id;
 	}
 
-	// Getter and setter methods for buch_id and kunde_nummer
-	public Integer getBuch_id()
+	public Buch getBuch()
 	{
-		return buch_id;
+		return buch;
 	}
 
-	public void setBuch_id(Integer buch_id)
+	public void setBuch(Buch buch)
 	{
-		this.buch_id = buch_id;
+		this.buch = buch;
 	}
 
-	public Integer getKunde_nummer()
+	public Kunde getKunde()
 	{
-		return kunde_nummer;
+		return kunde;
 	}
 
-	public void setKunde_nummer(Integer kunde_nummer)
+	public void setKunde(Kunde kunde)
 	{
-		this.kunde_nummer = kunde_nummer;
+		this.kunde = kunde;
 	}
 
 	public Date getDatum()
