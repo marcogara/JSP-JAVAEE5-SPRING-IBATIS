@@ -26,5 +26,4 @@
             WHERE ausleihe.buch_id = #value#
     </select>
 
-
 </sqlMap>

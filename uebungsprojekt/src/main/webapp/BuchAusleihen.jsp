@@ -31,7 +31,8 @@
 						<h:outputLabel for="listboxTitel" value="GENRE" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 20px; text-align:center;"/>
 						<h:outputLabel for="listboxTitel" value="JAHR" style="font-size: 24px; padding: 20px 10px 10px; margin-right: 8px; text-align:center;"/>
 						<h:outputLabel for="listboxTitel" value="VERLAG" style="font-size: 24px; padding: 10px; margin-right: 330px; text-align:center;"/>
-						<h:outputLabel for="listboxTitel" value="ISBN" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 10px; text-align:center;"/>
+						<h:outputLabel for="listboxTitel" value="ISBN" style="font-size: 24px; padding: 10px 20px 30px; margin-right: 50px; text-align:center;"/>
+						<h:outputLabel for="listboxTitel" value="X = Buch bereits ausgeliehen " style="font-size: 24px; padding: 10px 20px 30px; margin-right: 10px; text-align:center;"/>
 
 						<ui:panelLayout id="layoutPanelList" panelLayout="flow" style="text-align: center; margin-bottom: 50px;">
 							<h:panelGrid columnClasses="gridlabelfrei,griddata" columns="5" id="gridPanelList">

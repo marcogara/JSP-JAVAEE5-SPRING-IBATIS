@@ -15,6 +15,15 @@ public class AusleiheDAOImpl
 	@Override
 	public int pruefeBuch(Integer id)
 	{
-		return (int) getSqlMapClientTemplate().queryForObject("ausleihe.checkIfBuchIsAusgeliehen", id);
+		Integer result = (Integer) getSqlMapClientTemplate().queryForObject("ausleihe.checkIfBuchIsAusgeliehen", id);
+
+		if (result != null)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }

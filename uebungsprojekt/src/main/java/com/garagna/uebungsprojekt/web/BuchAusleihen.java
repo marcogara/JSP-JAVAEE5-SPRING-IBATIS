@@ -142,23 +142,32 @@ public class BuchAusleihen extends AbstractPageBean
 		// if ID is in database
 		Kunde kunde = this.transactionRegistrieren.selectedKundeLaden(kundennummer);
 		Buch buch = this.transactionBuecherliste.buecherlisteLaden().get(buchId);
+		Integer buchTest = this.transactionAusleihen.pruefeBuchSchonAusgeliehen(buchId);
 
 		if (kunde != null) // und Buch verfügbar ist zb.
 		// Prüfen, ob das Kundenobjekt nicht null ist
 		//Wenn Der Kunde existiert, weitergehen mit Ausleihen transaction
 		{
-			ausleihe.setBuch(buch);
-			ausleihe.setKunde(kunde);
 
-			Date sqlDate = new Date(System.currentTimeMillis());
-			ausleihe.setDatum(sqlDate);
+			if (buchTest == 0)
+			{
+				ausleihe.setBuch(buch);
+				ausleihe.setKunde(kunde);
 
-			// this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
-			// transaction Aufruf
-			this.transactionAusleihen.speichern(ausleihe);
+				Date sqlDate = new Date(System.currentTimeMillis());
+				ausleihe.setDatum(sqlDate);
 
-			// Implement any validation logic here
-			this.errorMessage = "Ausleihe erfolgreich.";
+				// this.errorMessage = "Kundennummer: " + kunde.getNummer() + " ausgewählt"; // Der Kunde wurde ausgewählt  // ??
+				// transaction Aufruf
+				this.transactionAusleihen.speichern(ausleihe);
+
+				// Implement any validation logic here
+				this.errorMessage = "Ausleihe erfolgreich.";
+			}
+			else
+			{
+				this.errorMessage = "Buch mi Id: " + buchId + " nicht vorhanden!"; // Das Buch ist schon Ausgeliehen
+			}
 		}
 		else
 		{
@@ -188,7 +197,15 @@ public class BuchAusleihen extends AbstractPageBean
 			String isbn;
 			isbn = TextUtils.rpad(buch.getIsbn(), 20, sp);
 
-			String anzeige = id + titel + autor + genre + year + velagName + isbn;
+			Integer buchTest = this.transactionAusleihen.pruefeBuchSchonAusgeliehen(buch.getId());
+			String buchFlag = "";
+			// if Buch in der tabelle ist flag hinzufügen sonst nicht
+			if (buchTest == 1)
+			{
+				buchFlag = "X";
+			}
+
+			String anzeige = id + titel + autor + genre + year + velagName + isbn + buchFlag;
 
 			items.add(new Option(buch.getId(), anzeige));
 		}
