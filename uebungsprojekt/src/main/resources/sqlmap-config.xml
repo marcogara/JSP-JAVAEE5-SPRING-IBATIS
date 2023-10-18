@@ -4,7 +4,6 @@
 	"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <!-- Always ensure to use the correct XML header as above! -->
 <sqlMapConfig>
-
 	<settings useStatementNamespaces="true"/>
 
 	<typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>

@@ -134,7 +134,6 @@ public class BuchAusleihen extends AbstractPageBean
 		// transaction Aufruf
 		this.transactionAusleihen.speichern(ausleihe);
 		this.errorMessage = "Ausleihe erfolgreich.";
-
 	}
 
 	public void buchlisteErzeugen()
@@ -170,7 +169,6 @@ public class BuchAusleihen extends AbstractPageBean
 
 	public String buttonHome_action()
 	{
-		// Registrieren reg = (Registrieren) getBean("Registrieren");
 		return "go_welcome";
 	}
 }
