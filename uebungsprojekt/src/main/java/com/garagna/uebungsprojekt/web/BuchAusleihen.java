@@ -24,7 +24,7 @@ public class BuchAusleihen extends AbstractPageBean
 {
 	private final String SP = "\u00A0";
 
-	private TransactionAusleihen transactionAusleihen;			// das sollte die einzige Trasaction verantwortlich für alle in diesen Klassen
+	private TransactionAusleihen transactionAusleihen;			// die sollte die einzige Trasaction verantwortlich für alle in diesen Klassen (siehe: BuchverleihDocs.txt am Ende)
 
 	public void setTransactionAusleihen(TransactionAusleihen transactionAusleihen)
 	{
@@ -81,7 +81,7 @@ public class BuchAusleihen extends AbstractPageBean
 		this.form = f;
 	}
 
-	private String errorMessage = " ";           // Für Meldungen und oder testing
+	private String errorMessage = " ";
 
 	public String getErrorMessage()
 	{

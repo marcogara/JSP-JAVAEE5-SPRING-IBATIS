@@ -1,6 +1,5 @@
 package com.garagna.uebungsprojekt.web;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -131,58 +130,56 @@ public class Buecherliste extends AbstractPageBean
 }
 
 /**
- * step to add new functionality in the app to do all the other operations (to read from the database) here we need the booklist
+ * Schritt zum Hinzufügen neuer Funktionen in der App, um alle anderen Vorgänge auszuführen (zum Lesen aus der Datenbank). Hier benötigen wir die Bücherliste
  *
- * add the ui element i need in this case listBox
+ * Fügen Sie das UI-Element hinzu, das Sie in diesem Fall listBox benötige
  *
- * relative page class i add the varable with getter adn setter and data binding to the gui so : <ui:listbox binding="#{Buecherliste.listboxBuecher}............/>
+ * Entsprechende Seitenklasse. Ich füge die Variable mit Getter und Setter und Datenbindung zur GUI hinzu, also:
  *
+ * <ui:listbox binding="#{Buecherliste.listboxBuecher}............/>
  *
- * Transaction class create transaction........ class in transaction package TransactionBuecherliste zb. here
+ * Transaction Klass erstellen transaction........ Klass in transaction package TransactionBuecherliste zb. Hier
  *
- * add in this class the reference to the transaction class
+ * Fügen Sie in dieser Klasse den Verweis auf die Transaktionsklasse hinzu
  *
  * private TransactionBuecherliste transactionBuecherliste;
  *
  * public void setTransactionBuch(TransactionBuecherliste tb) { this.transactionBuecherliste = tb; }
  *
- *
- * transaction.xml needs to have the correct bean (Trasnsaction class) like so for this case:
+ * transaktion.xml muss für diesen Fall die richtige Bean (Trasnsaction-Klasse) haben, etwa so:
  *
  * <bean id="transactionBuecherliste" class="com.garagna.uebungsprojekt.transaction.TransactionBuecherliste">
  * <property name="buchDAO" ref="buchDAO"/>
  * </bean>
  *
+ * DAO-Interface im Dao-Paket, die innerhalb der Vorgänge deklariert, die ich für mein DAO-Objekt zulassen möchte
  *
- * DAO interface in dao package declaring inside the operations i want to allow my DAO object
+ * DAOImpl class Diese Klasse muss "extends SqlMapClientDaoSupport implements BuchDAO" in Diesem Fall
  *
- * DAOImpl class this class has to extends SqlMapClientDaoSupport implements BuchDAO in this case
+ * bean hinzufügen in ibatisdao.xml
  *
- * add bean in ibatisdao.xml
+ * Die Faces-Config-Datei muss vorhanden sein
  *
- * faces-config file has to be present
+ * sqlmap-config.xml muss die 2 Elemente enthalten:
  *
- * sqlmap-config.xml need to contain the 2 element :
+ * muss die Entität haben, wie im Beispiel unten gezeigt
  *
- * needs to have the entity as exemple below show
+ * <typeAlias alias="Buch" type="com.myname.uebungsprojekt.types.Buch"/>
+ * <typeAlias alias="Kunde" type="com.myname.uebungsprojekt.types.Kunde"/>
  *
- * <typeAlias alias="Buch" type="com.garagna.uebungsprojekt.types.Buch"/>
- * <typeAlias alias="Kunde" type="com.garagna.uebungsprojekt.types.Kunde"/>
- *
- * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/buch.xml"/>
- * <sqlMap resource="com/garagna/uebungsprojekt/sqlmap/kunde.xml"/>
- *
- *
- * insert the sql statement in buch.xml and check the implementation in you DAOImpl class
- *
- * implement the functionality in TransactionBuecherliste with a reference of a BuchDao object
- *
- * after creating the function: public List<Buch> buecherlisteLaden()
- *
- * you can call it from this page like it was done in Registrieren.java zb.
+ * <sqlMap resource="com/myname/uebungsprojekt/sqlmap/buch.xml"/>
+ * <sqlMap resource="com/myname/uebungsprojekt/sqlmap/kunde.xml"/>
  *
  *
- * in managed-beans.xml the bean corrisponding the operation you want to have need to have the implementation from the class its transaction class like so :
+ * Fügen Sie die SQL-Anweisung in buch.xml ein und überprüfen Sie die Implementierung in Ihrer DAOImpl-Klasse
+ *
+ * Implementieren Sie die Funktionalität in TransactionBuecherliste mit einer Referenz eines BuchDao-Objekts
+ *
+ * nach dem Erstellen der Funktion: public List<Buch> buecherlisteLaden()
+ *
+ * Sie können es von dieser Seite aus aufrufen, wie es in getan wurde Registrieren.java zb.
+ *
+ * In der Datei „managed-beans.xml“ muss die Bean, die der Operation entspricht, die Sie haben möchten, die Implementierung der Klasse ihrer Transaktionsklasse wie folgt haben:
  *
  * <managed-bean>
  * <managed-bean-name>Registrieren</managed-bean-name>
@@ -195,8 +192,7 @@ public class Buecherliste extends AbstractPageBean
  * </managed-bean>
  *
  *
- * in this case :
- *
+ * in diesem Fall :
  *
  * <managed-bean>
  * <managed-bean-name>Buecherliste</managed-bean-name>
@@ -208,8 +204,7 @@ public class Buecherliste extends AbstractPageBean
  * </managed-property>
  * </managed-bean>
  *
- * add in buch.xml
- *
+ * hinzufügen in buch.xml
  * <resultMap id="result" class="Buch" >
  * <result column="id" property="id" jdbcType="INTEGER" />
  * <result column="titel" property="bezeichnung" jdbcType="VARCHAR" />
@@ -220,14 +215,12 @@ public class Buecherliste extends AbstractPageBean
  * <result column="isbn" property="reserviert" jdbcType="VARCHAR" />
  * </resultMap>
  *
+ * Stellen Sie in diesem Fall sicher, dass in Ihrer Klasse alle Variablen mit demselben Namen wie die Ergebniskarte zugänglich sind
  *
- * make sure your class in this case buch has all variable accessible with the same name as the result map
- *
- * look: buch.xml
- *
- *
+ * siehe: buch.xml
  *
  * beispiel für liste zum ui übertragen public void buttonListe_action()
+ *
  *
  *
  */
