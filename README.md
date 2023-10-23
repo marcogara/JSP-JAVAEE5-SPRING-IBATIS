@@ -4,9 +4,7 @@ Project Description:
 
 This project serves as a valuable learning resource for individuals looking to gain proficiency in a specific set of technologies, including Spring, iBatis, Maven, JSP, and other related frameworks. It is specifically designed for those who aim to familiarize themselves with these tools and enhance their skills in working with them.
 
-Getting Started:
-
-To start the project, what do we need?
+## 📝 Getting Started:
 
 • NetBeans IDE 19
 • JDK 11
