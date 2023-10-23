@@ -4,6 +4,18 @@ Project Description:
 
 This project serves as a valuable learning resource for individuals looking to gain proficiency in a specific set of technologies, including Spring, iBatis, Maven, JSP, and other related frameworks. It is specifically designed for those who aim to familiarize themselves with these tools and enhance their skills in working with them.
 
+Getting Started:
+
+To start the project, what do we need?
+
+• NetBeans IDE 19
+• JDK 11
+• Managed by Maven: Spring Web MVC, JavaServerFaces
+• PostgreSQL 14
+• pgAdmin 4
+• Database script: you will find it in this folder “DATABASE_Buecherverleih.txt
+• Set up database and add script
+
 Key Highlights:
 
 Educational Purpose: This project is primarily intended for educational and learning purposes. It provides an opportunity for developers to explore, experiment, and deepen their understanding of Spring, iBatis, Maven, JSP, and related technologies.
